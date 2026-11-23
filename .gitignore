@@ -37,3 +37,9 @@ Thumbs.db
 *.njsproj
 *.sln
 *.sw?
+node_modules/
+dist/
+.env
+.env.local
+.env.*
+!.env.example
