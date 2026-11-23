@@ -1,0 +1,163 @@
+{
+  "nav": {
+    "home": "Home",
+    "explore": "Explore Places",
+    "categories": "Categories",
+    "map": "Interactive Map",
+    "projects": "Mega Projects",
+    "about": "About Dakhla",
+    "admin": "Admin",
+    "signIn": "Sign In",
+    "signOut": "Sign Out",
+    "searchPlaceholder": "Search hotels, camps, restaurants, watersports, sights..."
+  },
+  "categories": {
+    "hotels": "Hotels & Camps",
+    "restaurants": "Restaurants & Seafood",
+    "cafes": "Cafés & Tea Rooms",
+    "activities": "Activities & Kitesurf",
+    "artisans": "Artisans & Local Crafts",
+    "projects": "Regional Mega Projects",
+    "attractions": "Attractions & Natural Sights"
+  },
+  "hero": {
+    "badge": "The Pearl of the Moroccan Sahara",
+    "title": "Discover Dakhla, where golden dunes meet the Atlantic Ocean",
+    "subtitle": "Your authentic guide to premier watersports, Saharan hospitality, natural wonders, and major developmental projects.",
+    "exploreButton": "Explore Places",
+    "mapButton": "View on Map"
+  },
+  "features": {
+    "verifiedTitle": "Field-Verified Data",
+    "verifiedDesc": "Every establishment undergoes strict verification and precise GPS auditing with zero assumed coordinates.",
+    "trilingualTitle": "Authentic Trilingual Experience",
+    "trilingualDesc": "Curated content natively crafted in Arabic, French, and English for national and international travelers.",
+    "ecoTitle": "Sustainable Ecotourism",
+    "ecoDesc": "Promoting the Ramsar-classified lagoon and the unique biodiversity of the Dakhla peninsula."
+  },
+  "discovery": {
+    "title": "Explore Places & Experiences",
+    "subtitle": "Discover hotels, camps, restaurants, watersports, and mega projects across the Dakhla peninsula.",
+    "allCategories": "All Categories",
+    "filterByPrice": "Filter by Price",
+    "allPrices": "All Prices",
+    "allProjects": "All Statuses",
+    "search": "Search by name or keyword...",
+    "placesCount": "{{count}} place(s) found",
+    "noPlacesFound": "No places match your search",
+    "noPlacesDescription": "Places are currently undergoing field GPS audit. They will appear as empirical audits complete.",
+    "resetFilters": "Reset filters",
+    "fallbackBadge": "Fallback translation ({{lang}})",
+    "verifiedCoords": "Field-verified GPS"
+  },
+  "map": {
+    "title": "Interactive Map of Dakhla",
+    "subtitle": "Explore the peninsula, lagoon, and kitesurfing spots in high precision.",
+    "viewPlace": "View Place",
+    "noCoords": "Coordinates under field audit",
+    "openInOsm": "Open in OpenStreetMap",
+    "legend": "Map Legend"
+  },
+  "details": {
+    "backToPlaces": "Back to places",
+    "gallery": "Photo Gallery",
+    "aboutPlace": "About this Place",
+    "tips": "Visitor Tips & Practical Advice",
+    "location": "Location",
+    "projectInfo": "Regional Project Details",
+    "completionDate": "Estimated Completion Date",
+    "callPhone": "Call Phone",
+    "whatsappChat": "WhatsApp Chat",
+    "visitWebsite": "Visit Official Website",
+    "viewInstagram": "Instagram",
+    "getDirections": "Get Directions",
+    "verifiedAuditBadge": "Field Verified"
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "email": "Email Address",
+    "password": "Password",
+    "fullName": "Full Name",
+    "submitSignIn": "Sign In",
+    "submitSignUp": "Create Account",
+    "googleSignIn": "Continue with Google",
+    "or": "or",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "loginRequired": "Login required to continue",
+    "loginSuccess": "Signed in successfully",
+    "signUpSuccess": "Account created successfully. Welcome to Dakhla!",
+    "signOutSuccess": "Signed out successfully",
+    "errorInvalidCredentials": "Invalid email or password",
+    "errorEmailExists": "Email already registered"
+  },
+  "reviews": {
+    "title": "Visitor Reviews",
+    "writeReview": "Write a Review",
+    "yourRating": "Your Rating",
+    "yourComment": "Share your experience and tips...",
+    "submitReview": "Submit Review",
+    "minCharacters": "Minimum 5 characters",
+    "loginToReview": "Sign in to leave a review",
+    "alreadyReviewed": "You have already reviewed this place",
+    "reviewSuccess": "Your review has been published successfully!",
+    "noReviewsYet": "No reviews yet. Be the first to share your experience!"
+  },
+  "favorites": {
+    "title": "My Favorites",
+    "subtitle": "Places and experiences saved for your trip to Dakhla.",
+    "empty": "You don't have any saved favorites yet.",
+    "emptyDescription": "Explore places and click the heart icon to save them here.",
+    "exploreButton": "Explore Places Now",
+    "added": "Added to favorites",
+    "removed": "Removed from favorites"
+  },
+  "assistant": {
+    "name": "L7aj Concierge",
+    "tagline": "Your intelligent concierge & local Dakhla expert",
+    "greeting": "Welcome to Dakhla! I am L7aj, at your service to guide you to the finest spots, seafood, and regional projects.",
+    "placeholder": "Ask L7aj about places, activities...",
+    "send": "Send",
+    "rateLimitNotice": "Rate limit reached. Please wait {{seconds}} seconds.",
+    "quickPromptKitesurf": "Best kitesurfing spots?",
+    "quickPromptOysters": "Where to eat fresh oysters?",
+    "quickPromptDune": "What is the White Dune?",
+    "quickPromptPort": "Dakhla Atlantic Port status?",
+    "expand": "Full screen",
+    "collapse": "Minimize",
+    "clear": "Clear chat"
+  },
+  "status": {
+    "underConstruction": "Under Construction",
+    "completed": "Completed",
+    "operational": "Operational",
+    "draftAudit": "Under Field Audit"
+  },
+  "footer": {
+    "tagline": "Tourism discovery and regional projects portal for the Dakhla-Oued Ed-Dahab Region, Kingdom of Morocco.",
+    "quickLinks": "Quick Links",
+    "categories": "Categories",
+    "legal": "Legal & Privacy",
+    "privacy": "Data Protection & Privacy (CNDP)",
+    "terms": "Terms of Service",
+    "copyright": "All rights reserved © {{year}} Dakhla Tourism Platform — Kingdom of Morocco."
+  },
+  "lang": {
+    "selectLanguage": "Choose language",
+    "ar": "Arabic",
+    "fr": "French",
+    "en": "English"
+  },
+  "common": {
+    "loading": "Loading...",
+    "viewDetails": "View Details",
+    "reviews": "Reviews",
+    "rating": "Rating",
+    "contact": "Contact",
+    "website": "Website",
+    "phone": "Phone",
+    "directions": "Directions",
+    "noResults": "No results found"
+  }
+}

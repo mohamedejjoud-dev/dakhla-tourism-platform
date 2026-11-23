@@ -1,0 +1,163 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "explore": "Explorer les lieux",
+    "categories": "Catégories",
+    "map": "Carte interactive",
+    "projects": "Grands Projets",
+    "about": "À propos de Dakhla",
+    "admin": "Administration",
+    "signIn": "Connexion",
+    "signOut": "Déconnexion",
+    "searchPlaceholder": "Rechercher hôtels, camps, restaurants, kitesurf, attractions..."
+  },
+  "categories": {
+    "hotels": "Hôtels & Camps",
+    "restaurants": "Restaurants & Fruits de Mer",
+    "cafes": "Cafés & Salons de Thé",
+    "activities": "Activités & Kitesurf",
+    "artisans": "Artisanat & Produits du Terroir",
+    "projects": "Grands Projets Régionaux",
+    "attractions": "Attractions & Sites Naturels"
+  },
+  "hero": {
+    "badge": "La Perle du Sahara Marocain",
+    "title": "Découvrez Dakhla, là où les dunes dorées rencontrent l'Océan Atlantique",
+    "subtitle": "Votre guide authentique pour les sports nautiques d'exception, l'hospitalité saharienne et les grands projets structurants.",
+    "exploreButton": "Explorer les lieux",
+    "mapButton": "Voir sur la carte"
+  },
+  "features": {
+    "verifiedTitle": "Données Vérifiées sur le Terrain",
+    "verifiedDesc": "Chaque établissement fait l'objet d'un audit de conformité et de coordonnées GPS vérifiées sans aucune supposition.",
+    "trilingualTitle": "Expérience Trilingue Authentique",
+    "trilingualDesc": "Contenus soignés en arabe, français et anglais adaptés pour tous les visiteurs nationaux et internationaux.",
+    "ecoTitle": "Écotourisme & Nature Préservée",
+    "ecoDesc": "Mise en valeur de la lagune classée Ramsar et de la biodiversité d'exception de la péninsule."
+  },
+  "discovery": {
+    "title": "Explorer les Lieux & Expériences",
+    "subtitle": "Découvrez les hôtels, camps, restaurants, sports nautiques et grands projets de la péninsule de Dakhla.",
+    "allCategories": "Toutes les catégories",
+    "filterByPrice": "Filtrer par prix",
+    "allPrices": "Tous les prix",
+    "allProjects": "Tous les statuts",
+    "search": "Rechercher par nom ou mot-clé...",
+    "placesCount": "{{count}} lieu(x) trouvé(s)",
+    "noPlacesFound": "Aucun lieu trouvé pour ces critères",
+    "noPlacesDescription": "Les lieux sont actuellement en cours d'audit terrain et de relevé GPS. Ils apparaîtront au fur et à mesure de leur validation.",
+    "resetFilters": "Réinitialiser les filtres",
+    "fallbackBadge": "Traduction de remplacement ({{lang}})",
+    "verifiedCoords": "Coordonnées GPS vérifiées"
+  },
+  "map": {
+    "title": "Carte Interactive de Dakhla",
+    "subtitle": "Explorez la péninsule, la lagune et les spots de kitesurf en haute précision.",
+    "viewPlace": "Voir la fiche",
+    "noCoords": "Coordonnées en cours d'audit terrain",
+    "openInOsm": "Ouvrir dans OpenStreetMap",
+    "legend": "Légende de la carte"
+  },
+  "details": {
+    "backToPlaces": "Retour aux lieux",
+    "gallery": "Galerie Photos",
+    "aboutPlace": "À propos de ce lieu",
+    "tips": "Conseils pratiques pour les visiteurs",
+    "location": "Localisation",
+    "projectInfo": "Fiche Projet Régional",
+    "completionDate": "Date d'achèvement prévue",
+    "callPhone": "Appeler",
+    "whatsappChat": "Contacter sur WhatsApp",
+    "visitWebsite": "Visiter le site officiel",
+    "viewInstagram": "Instagram",
+    "getDirections": "Itinéraire",
+    "verifiedAuditBadge": "Vérifié sur le terrain"
+  },
+  "auth": {
+    "signIn": "Connexion",
+    "signUp": "Créer un compte",
+    "email": "Adresse email",
+    "password": "Mot de passe",
+    "fullName": "Nom complet",
+    "submitSignIn": "Se connecter",
+    "submitSignUp": "S'inscrire",
+    "googleSignIn": "Continuer avec Google",
+    "or": "ou",
+    "noAccount": "Pas encore de compte ?",
+    "hasAccount": "Vous avez déjà un compte ?",
+    "loginRequired": "Connexion requise pour continuer",
+    "loginSuccess": "Connexion réussie",
+    "signUpSuccess": "Compte créé avec succès. Bienvenue à Dakhla !",
+    "signOutSuccess": "Déconnexion réussie",
+    "errorInvalidCredentials": "Identifiants invalides",
+    "errorEmailExists": "Cet email est déjà utilisé"
+  },
+  "reviews": {
+    "title": "Avis des Voyageurs",
+    "writeReview": "Donner un avis",
+    "yourRating": "Votre note",
+    "yourComment": "Partagez votre expérience et vos conseils...",
+    "submitReview": "Publier mon avis",
+    "minCharacters": "5 caractères minimum",
+    "loginToReview": "Connectez-vous pour laisser un avis",
+    "alreadyReviewed": "Vous avez déjà évalué cet endroit",
+    "reviewSuccess": "Votre avis a été publié avec succès !",
+    "noReviewsYet": "Aucun avis pour le moment. Soyez le premier à partager votre expérience !"
+  },
+  "favorites": {
+    "title": "Mes Favoris",
+    "subtitle": "Les lieux et activités sauvegardés pour votre voyage à Dakhla.",
+    "empty": "Vous n'avez pas encore de favoris.",
+    "emptyDescription": "Explorez les lieux et cliquez sur le cœur pour les sauvegarder ici.",
+    "exploreButton": "Découvrir les lieux",
+    "added": "Ajouté aux favoris",
+    "removed": "Retiré des favoris"
+  },
+  "assistant": {
+    "name": "L7aj Concierge",
+    "tagline": "Votre concierge intelligent et expert local de Dakhla",
+    "greeting": "Marhaban bikoum à Dakhla ! Je suis L7aj, à votre service pour vous guider vers les meilleurs spots, restaurants et projets de la région.",
+    "placeholder": "Posez votre question à L7aj...",
+    "send": "Envoyer",
+    "rateLimitNotice": "Limite de requêtes atteinte. Veuillez patienter {{seconds}} secondes.",
+    "quickPromptKitesurf": "Meilleurs spots de kitesurf ?",
+    "quickPromptOysters": "Où déguster des huîtres fraîches ?",
+    "quickPromptDune": "C'est quoi la Dune Blanche ?",
+    "quickPromptPort": "Avancement du Port Dakhla Atlantique ?",
+    "expand": "Plein écran",
+    "collapse": "Réduire",
+    "clear": "Effacer la conversation"
+  },
+  "status": {
+    "underConstruction": "En cours de réalisation",
+    "completed": "Achevé",
+    "operational": "Opérationnel",
+    "draftAudit": "En cours d'audit terrain"
+  },
+  "footer": {
+    "tagline": "Portail de découverte touristique et des projets de la région Dakhla-Oued Ed-Dahab, Royaume du Maroc.",
+    "quickLinks": "Liens Rapides",
+    "categories": "Catégories",
+    "legal": "Mentions Légales",
+    "privacy": "Protection des Données (CNDP)",
+    "terms": "Conditions Générales",
+    "copyright": "Tous droits réservés © {{year}} Plateforme Touristique de Dakhla — Royaume du Maroc."
+  },
+  "lang": {
+    "selectLanguage": "Choisir la langue",
+    "ar": "Arabe",
+    "fr": "Français",
+    "en": "Anglais"
+  },
+  "common": {
+    "loading": "Chargement en cours...",
+    "viewDetails": "Voir les détails",
+    "reviews": "Avis",
+    "rating": "Note",
+    "contact": "Contact",
+    "website": "Site Web",
+    "phone": "Téléphone",
+    "directions": "Itinéraire",
+    "noResults": "Aucun résultat trouvé"
+  }
+}

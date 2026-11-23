@@ -1,0 +1,47 @@
+{
+  "name": "dakhlin",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Dakhla Tourism Platform — Public portal for discovering Dakhla, Morocco",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test:sec06": "tsx --env-file=.env.local tests/security/sec06-storage-upload.ts",
+    "test:concurrency": "tsx --env-file=.env.local tests/security/ai_rate_limiter_concurrency.ts",
+    "test:i18n": "tsx tests/frontend/i18n.test.ts",
+    "test:phase3": "tsx --env-file=.env.local tests/frontend/phase3_discovery.test.ts",
+    "test:phase4": "tsx --env-file=.env.local tests/frontend/phase4_auth_reviews.test.ts",
+    "test:phase5": "tsx --env-file=.env.local tests/frontend/phase5_ai_assistant.test.ts",
+    "db:run": "tsx --env-file=.env.local supabase/scripts/run_sql.ts"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.1",
+    "@types/pg": "^8.23.1",
+    "i18next": "^24.2.2",
+    "i18next-browser-languagedetector": "^8.0.2",
+    "leaflet": "^1.9.4",
+    "lucide-react": "^0.475.0",
+    "pg": "^8.23.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-i18next": "^15.4.0",
+    "react-leaflet": "^4.2.1",
+    "react-router-dom": "^6.28.2",
+    "sharp": "^0.33.5"
+  },
+  "devDependencies": {
+    "@types/leaflet": "^1.9.16",
+    "@types/node": "^22.13.9",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.4.17",
+    "tsx": "^4.19.3",
+    "typescript": "^5.7.3",
+    "vite": "^6.2.0"
+  }
+}
