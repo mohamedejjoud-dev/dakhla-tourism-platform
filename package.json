@@ -14,6 +14,7 @@
     "test:phase3": "tsx --env-file=.env.local tests/frontend/phase3_discovery.test.ts",
     "test:phase4": "tsx --env-file=.env.local tests/frontend/phase4_auth_reviews.test.ts",
     "test:phase5": "tsx --env-file=.env.local tests/frontend/phase5_ai_assistant.test.ts",
+    "test:phase6": "tsx --env-file=.env.local tests/frontend/phase6_admin_cms.test.ts",
     "db:run": "tsx --env-file=.env.local supabase/scripts/run_sql.ts"
   },
   "dependencies": {

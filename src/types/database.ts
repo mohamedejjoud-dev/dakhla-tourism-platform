@@ -24,7 +24,7 @@ export interface CategoryWithTranslation extends Category {
 }
 
 export type PlaceStatus = 'draft' | 'published' | 'archived';
-export type ProjectStatus = 'operational' | 'under_construction' | 'planned';
+export type ProjectStatus = 'not_applicable' | 'planned' | 'under_construction' | 'completed' | 'operational';
 
 export interface Place {
   id: string;

@@ -13,6 +13,15 @@ import { FavoritesPage } from './pages/FavoritesPage';
 import { AuthPage } from './pages/AuthPage';
 import { AssistantPage } from './pages/AssistantPage';
 
+// Admin CMS Components & Pages
+import { AdminGuard } from './components/admin/AdminGuard';
+import { AdminLayout } from './components/admin/AdminLayout';
+import { AdminDashboardPage } from './pages/admin/AdminDashboardPage';
+import { AdminPlacesPage } from './pages/admin/AdminPlacesPage';
+import { AdminPlaceEditPage } from './pages/admin/AdminPlaceEditPage';
+import { AdminCategoriesPage } from './pages/admin/AdminCategoriesPage';
+import { AdminReviewsPage } from './pages/admin/AdminReviewsPage';
+
 export const App: React.FC = () => {
   return (
     <AuthProvider>
@@ -20,6 +29,7 @@ export const App: React.FC = () => {
         <BrowserRouter>
           <AuthModal />
           <Routes>
+            {/* Public Tourist Portal */}
             <Route path="/" element={<Layout />}>
               <Route index element={<HomePage />} />
               <Route path="explore" element={<ExplorePage />} />
@@ -31,8 +41,22 @@ export const App: React.FC = () => {
               <Route path="favorites" element={<FavoritesPage />} />
               <Route path="assistant" element={<AssistantPage />} />
               <Route path="auth" element={<AuthPage />} />
-              <Route path="*" element={<Navigate to="/" replace />} />
             </Route>
+
+            {/* Protected Admin CMS */}
+            <Route path="/admin" element={<AdminGuard />}>
+              <Route element={<AdminLayout />}>
+                <Route index element={<AdminDashboardPage />} />
+                <Route path="places" element={<AdminPlacesPage />} />
+                <Route path="places/new" element={<AdminPlaceEditPage />} />
+                <Route path="places/:id/edit" element={<AdminPlaceEditPage />} />
+                <Route path="categories" element={<AdminCategoriesPage />} />
+                <Route path="reviews" element={<AdminReviewsPage />} />
+              </Route>
+            </Route>
+
+            {/* Catch-all fallback */}
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </BrowserRouter>
       </FavoritesProvider>
