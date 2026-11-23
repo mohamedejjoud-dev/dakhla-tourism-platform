@@ -1,0 +1,37 @@
+# public/robots.txt
+# Crawler access directives for Dakhlin (Dakhla Tourism Platform)
+
+User-agent: *
+Allow: /
+Allow: /explore
+Allow: /places/
+Allow: /map
+Allow: /about
+Allow: /assistant
+
+# Disallow admin CMS and private auth endpoints
+Disallow: /admin
+Disallow: /admin/
+Disallow: /auth
+Disallow: /auth/
+
+# Allow social crawlers to access open graph cards
+User-agent: WhatsApp
+Allow: /places/
+
+User-agent: facebookexternalhit
+Allow: /places/
+
+User-agent: Twitterbot
+Allow: /places/
+
+User-agent: LinkedInBot
+Allow: /places/
+
+User-agent: TelegramBot
+Allow: /places/
+
+User-agent: Googlebot
+Allow: /
+
+Sitemap: https://dakhlin.com/sitemap.xml

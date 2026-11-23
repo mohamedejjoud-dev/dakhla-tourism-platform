@@ -13,6 +13,7 @@ import {
   Sparkles
 } from 'lucide-react';
 import { useL7ajChat } from '@/hooks/useL7ajChat';
+import { SeoMeta } from '@/components/seo/SeoMeta';
 
 export const AssistantPage: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -47,6 +48,11 @@ export const AssistantPage: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+      <SeoMeta
+        title="L7aj AI Concierge — Local Dakhla Expert"
+        description={t('assistant.greeting')}
+        canonicalPath="/assistant"
+      />
       
       {/* Header Banner */}
       <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-ocean-950 via-ocean-900 to-lagoon-900 text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-xl border border-white/10">

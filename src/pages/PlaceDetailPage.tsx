@@ -25,6 +25,7 @@ import { LeafletMap } from '@/components/map/LeafletMap';
 import { ReviewForm } from '@/components/reviews/ReviewForm';
 import { ReviewList } from '@/components/reviews/ReviewList';
 import { useFavorites } from '@/context/FavoritesContext';
+import { SeoMeta } from '@/components/seo/SeoMeta';
 
 export const PlaceDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -96,8 +97,41 @@ export const PlaceDetailPage: React.FC = () => {
   const isUnderConstruction = place.project_status === 'under_construction';
   const hasCoordinates = place.latitude !== null && place.longitude !== null;
 
+  const placeSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'TouristAttraction',
+    name: place.translation.title,
+    description: place.translation.description,
+    image: place.primaryImageUrl || 'https://dakhlin.com/og-default-dakhla.webp',
+    url: `https://dakhlin.com/places/${place.slug}`,
+    ...(hasCoordinates ? {
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: place.latitude,
+        longitude: place.longitude,
+      },
+    } : {}),
+    ...(place.avg_rating > 0 ? {
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: place.avg_rating,
+        reviewCount: place.review_count,
+        bestRating: 5,
+        worstRating: 1,
+      },
+    } : {}),
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
+      <SeoMeta
+        title={place.translation.title}
+        description={place.translation.description?.substring(0, 160)}
+        ogImage={place.primaryImageUrl || undefined}
+        canonicalPath={`/places/${place.slug}`}
+        ogType="place"
+        structuredData={placeSchema}
+      />
       
       {/* Top Breadcrumb Navigation */}
       <div className="flex items-center justify-between">

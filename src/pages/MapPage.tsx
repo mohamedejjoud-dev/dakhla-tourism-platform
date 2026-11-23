@@ -4,6 +4,7 @@ import { Compass, MapPin } from 'lucide-react';
 import { LeafletMap } from '@/components/map/LeafletMap';
 import { fetchCategories, fetchPublishedPlaces } from '@/services/tourismService';
 import { CategoryWithTranslation, PlaceWithDetails, SupportedLanguage } from '@/types/database';
+import { SeoMeta } from '@/components/seo/SeoMeta';
 
 export const MapPage: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -32,6 +33,11 @@ export const MapPage: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+      <SeoMeta
+        title={t('map.title', 'Interactive Map of Dakhla')}
+        description={t('map.subtitle')}
+        canonicalPath="/map"
+      />
       
       {/* Page Header */}
       <div className="space-y-2">

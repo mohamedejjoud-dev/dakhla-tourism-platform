@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "include": [
+    "/places/*"
+  ],
+  "exclude": [
+    "/assets/*",
+    "/favicon.ico",
+    "/*.png",
+    "/*.webp",
+    "/*.jpg",
+    "/*.svg",
+    "/robots.txt",
+    "/sitemap.xml"
+  ]
+}

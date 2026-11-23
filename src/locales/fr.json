@@ -171,7 +171,13 @@
     "delete": "Supprimer",
     "view_live": "Voir en direct",
     "view_all": "Tout afficher",
-    "language": "Langue"
+    "language": "Langue",
+    "accept": "Accepter",
+    "decline": "Refuser"
+  },
+  "privacy": {
+    "cookie_title": "Respect de votre vie privée (Loi 09-08 / CNDP)",
+    "cookie_desc": "Nous utilisons des cookies essentiels pour sécuriser votre session et mémoriser vos préférences de langue. Vos données sont protégées conformément à la législation marocaine."
   },
   "places": {
     "title": "Lieu / Titre",

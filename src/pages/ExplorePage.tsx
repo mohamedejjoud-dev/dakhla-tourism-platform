@@ -12,6 +12,7 @@ import {
 import { PlaceCard } from '@/components/places/PlaceCard';
 import { fetchCategories, fetchPublishedPlaces } from '@/services/tourismService';
 import { CategoryWithTranslation, PlaceWithDetails, SupportedLanguage } from '@/types/database';
+import { SeoMeta } from '@/components/seo/SeoMeta';
 
 export const ExplorePage: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -79,6 +80,11 @@ export const ExplorePage: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+      <SeoMeta
+        title={t('discovery.title', 'Explore Dakhla — Places, Hotels & Experiences')}
+        description={t('discovery.subtitle')}
+        canonicalPath="/explore"
+      />
       
       {/* Header */}
       <div className="space-y-3">

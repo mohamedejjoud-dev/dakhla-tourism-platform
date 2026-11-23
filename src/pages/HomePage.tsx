@@ -12,6 +12,7 @@ import {
   ArrowRight
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { SeoMeta } from '@/components/seo/SeoMeta';
 
 export const HomePage: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -42,8 +43,26 @@ export const HomePage: React.FC = () => {
     },
   ];
 
+  const websiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Dakhlin — Dakhla Tourism Platform',
+    url: 'https://dakhlin.com',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: 'https://dakhlin.com/explore?search={search_term_string}',
+      'query-input': 'required name=search_term_string',
+    },
+  };
+
   return (
     <div className="space-y-16 sm:space-y-24 pb-16">
+      <SeoMeta
+        title={t('hero.title', 'Dakhlin — Discover Dakhla, Moroccan Sahara')}
+        description={t('hero.subtitle')}
+        canonicalPath="/"
+        structuredData={websiteSchema}
+      />
       
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-b from-ocean-900 via-ocean-800 to-ocean-950 text-white py-20 lg:py-28 px-4 sm:px-6 lg:px-8">

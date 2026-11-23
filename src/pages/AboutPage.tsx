@@ -1,12 +1,18 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Waves, Wind, Shield, Compass, Heart } from 'lucide-react';
+import { SeoMeta } from '@/components/seo/SeoMeta';
 
 export const AboutPage: React.FC = () => {
   const { t } = useTranslation();
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+      <SeoMeta
+        title="About Dakhla — La Perle du Sahara Marocain"
+        description="Une péninsule d'exception s'étendant sur 40 kilomètres entre l'Océan Atlantique et une lagune turquoise classée d'importance internationale."
+        canonicalPath="/about"
+      />
       
       {/* Header */}
       <div className="text-center space-y-4">
@@ -67,6 +73,24 @@ export const AboutPage: React.FC = () => {
           <span>Région de Dakhla-Oued Ed-Dahab • Royaume du Maroc</span>
           <Heart className="w-3.5 h-3.5 text-sand-600 fill-sand-600" />
         </div>
+      </div>
+
+      {/* CNDP & Moroccan Law 09-08 Privacy Section */}
+      <div id="privacy" className="p-8 bg-white rounded-2xl border border-sand-200/90 shadow-sm space-y-4">
+        <div className="flex items-center gap-2 text-ocean-800">
+          <Shield className="w-5 h-5 text-lagoon-600" />
+          <h2 className="text-xl font-bold font-serif">
+            Protection des Données Personnelles (Loi 09-08 / CNDP)
+          </h2>
+        </div>
+        <p className="text-sm text-slate-600 leading-relaxed">
+          Conformément à la loi marocaine n° 09-08 relative à la protection des personnes physiques à l'égard du traitement des données à caractère personnel, la plateforme touristique Dakhlin garantit la confidentialité et la sécurité des données des visiteurs et touristes.
+        </p>
+        <ul className="text-xs text-slate-600 space-y-1.5 list-disc list-inside">
+          <li>Seules les données strictement nécessaires au fonctionnement de la session utilisateur et des favoris sont traitées.</li>
+          <li>Les identités des auteurs d'avis sont isolées via la vue sécurisée <code>public_review_authors</code> sans exposition de courriel.</li>
+          <li>Chaque utilisateur dispose d'un droit d'accès, de rectification et d'opposition conformément aux dispositions de la CNDP.</li>
+        </ul>
       </div>
 
     </div>

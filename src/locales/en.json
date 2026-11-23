@@ -171,7 +171,13 @@
     "delete": "Delete",
     "view_live": "View Live",
     "view_all": "View All",
-    "language": "Language"
+    "language": "Language",
+    "accept": "Accept",
+    "decline": "Decline"
+  },
+  "privacy": {
+    "cookie_title": "Respect of your privacy (Law 09-08 / CNDP)",
+    "cookie_desc": "We use essential cookies to secure your session and store language preferences. Your personal data is protected in full compliance with Moroccan regulations."
   },
   "places": {
     "title": "Place / Title",
