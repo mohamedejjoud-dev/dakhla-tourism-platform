@@ -85,13 +85,16 @@ INSERT INTO public.places (
     price_level, status, is_featured, project_status, tags
 )
 VALUES
-    -- HOTELS (1 to 6)
-    ('22222222-0001-0000-0000-000000000001', '11111111-0001-0000-0000-000000000001', 'dakhla-attitude', NULL, NULL, NULL, NULL, 'https://dakhla-attitude.com/', NULL, 3, 'draft', false, 'not_applicable', ARRAY['kitesurf', 'lagoon', 'ecolodge']),
-    ('22222222-0001-0000-0000-000000000002', '11111111-0001-0000-0000-000000000001', 'pk25-dakhla', NULL, NULL, NULL, NULL, 'https://pk25dakhla.com/', NULL, 3, 'draft', false, 'not_applicable', ARRAY['boutique', 'lagoon', 'resort']),
-    ('22222222-0001-0000-0000-000000000003', '11111111-0001-0000-0000-000000000001', 'ocean-vagabond-lassarga', NULL, NULL, NULL, NULL, 'https://oceanvagabond.com/', NULL, 3, 'draft', false, 'not_applicable', ARRAY['ocean', 'surf', 'ecolodge']),
-    ('22222222-0001-0000-0000-000000000004', '11111111-0001-0000-0000-000000000001', 'westpoint-dakhla', NULL, NULL, NULL, NULL, 'https://westpointdakhla.ma/', NULL, 3, 'draft', false, 'not_applicable', ARRAY['ocean', 'chalets', 'surf']),
-    ('22222222-0001-0000-0000-000000000005', '11111111-0001-0000-0000-000000000001', 'palais-rhoul-dakhla', NULL, NULL, NULL, NULL, NULL, NULL, 4, 'draft', false, 'not_applicable', ARRAY['luxury', 'spa', 'lagoon']),
-    ('22222222-0001-0000-0000-000000000006', '11111111-0001-0000-0000-000000000001', 'la-tour-deole', NULL, NULL, NULL, NULL, 'https://tourdeole.com/', NULL, 4, 'draft', false, 'not_applicable', ARRAY['ecolodge', 'luxury', 'lagoon']),
+    -- HOTELS (1 to 9)
+    ('22222222-0001-0000-0000-000000000001', '11111111-0001-0000-0000-000000000001', 'dakhla-club', 23.9002, -15.7691, NULL, NULL, 'https://dakhlaclub.com', NULL, 3, 'published', true, 'not_applicable', ARRAY['hotel', 'kitesurf', 'resort', 'lagoon']),
+    ('22222222-0001-0000-0000-000000000002', '11111111-0001-0000-0000-000000000001', 'pk25', 23.9017, -15.7851, NULL, NULL, 'https://pk25dakhla.com', NULL, 3, 'published', true, 'not_applicable', ARRAY['hotel', 'kitesurf', 'boutique', 'lagoon']),
+    ('22222222-0001-0000-0000-000000000003', '11111111-0001-0000-0000-000000000001', 'ocean-vagabond-lassarga', 23.6346, -15.998, NULL, NULL, 'https://oceanvagabond.com/lassarga/', NULL, 3, 'published', true, 'not_applicable', ARRAY['hotel', 'ecolodge', 'surf', 'ocean']),
+    ('22222222-0001-0000-0000-000000000004', '11111111-0001-0000-0000-000000000001', 'west-point', 23.7685, -15.9244, NULL, NULL, 'https://westpointdakhla.ma', NULL, 3, 'published', true, 'not_applicable', ARRAY['hotel', 'eco-resort', 'surf', 'ocean']),
+    ('22222222-0001-0000-0000-000000000005', '11111111-0001-0000-0000-000000000001', 'palais-rhoul', 23.694, -15.9334, NULL, NULL, 'https://palaisrhoul.com', NULL, 4, 'published', true, 'not_applicable', ARRAY['hotel', 'luxury', 'spa', 'lagoon']),
+    ('22222222-0001-0000-0000-000000000006', '11111111-0001-0000-0000-000000000001', 'la-tour-deole', 23.7374, -15.7836, NULL, NULL, 'https://tourdeole.com', NULL, 4, 'published', true, 'not_applicable', ARRAY['hotel', 'ecolodge', 'luxury', 'lagoon']),
+    ('22222222-0001-0000-0000-000000000007', '11111111-0001-0000-0000-000000000001', 'la-crique', 23.7702, -15.9023, NULL, NULL, 'https://lacriquedakhla.com', NULL, 3, 'published', false, 'not_applicable', ARRAY['hotel', 'cliffside', 'lagoon', 'resort']),
+    ('22222222-0001-0000-0000-000000000008', '11111111-0001-0000-0000-000000000001', 'bavaro-beach', 23.7976, -15.8941, NULL, NULL, 'https://bavarobeachdakhla.com', NULL, 3, 'published', false, 'not_applicable', ARRAY['hotel', 'beachfront', 'resort', 'ocean']),
+    ('22222222-0001-0000-0000-000000000009', '11111111-0001-0000-0000-000000000001', 'tulum-beach', 23.7713, -15.9237, NULL, NULL, 'https://tulumbeachresortdakhla.com', NULL, 4, 'published', true, 'not_applicable', ARRAY['hotel', 'luxury', 'beach', 'sunset']),
 
     -- RESTAURANTS (7 to 12)
     ('22222222-0002-0000-0000-000000000099', '11111111-0002-0000-0000-000000000002', 'mama-saida', 23.70236, -15.95039, '+212658514404', '+212658514404', NULL, NULL, 1, 'published', true, 'not_applicable', ARRAY['homemade', 'fait-maison', 'tagine', 'traditional', 'budget', 'poulet', 'lentilles', 'msemen']),
@@ -143,9 +146,15 @@ VALUES
     ('22222222-0007-0000-0000-000000000042', '11111111-0007-0000-0000-000000000007', 'terminal-aeroport-dakhla', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'draft', false, 'under_construction', ARRAY['airport', 'expansion', 'logistics'])
 ON CONFLICT (slug) DO UPDATE SET
     category_id = EXCLUDED.category_id,
-    status = 'draft',
-    latitude = NULL,
-    longitude = NULL;
+    latitude = EXCLUDED.latitude,
+    longitude = EXCLUDED.longitude,
+    phone = EXCLUDED.phone,
+    whatsapp = EXCLUDED.whatsapp,
+    website_url = EXCLUDED.website_url,
+    price_level = EXCLUDED.price_level,
+    status = EXCLUDED.status,
+    is_featured = EXCLUDED.is_featured,
+    tags = EXCLUDED.tags;
 
 -- ----------------------------------------------------------------------------
 -- 4. SEED AUTHENTIC TRILINGUAL PLACE TRANSLATIONS (ar, fr, en)
@@ -154,10 +163,10 @@ INSERT INTO public.place_translations (
     place_id, language_code, title, short_description, full_description, address_display, practical_tips
 )
 VALUES
-    -- #01 Dakhla Attitude
-    ('22222222-0001-0000-0000-000000000001', 'fr', 'Dakhla Attitude Lagoon Camp', 'Camp éco-responsable emblématique face à la lagune de Dakhla.', 'Dakhla Attitude est un complexe hôtelier éco-touristique situé sur la pointe de la lagune, offrant des bungalows intégrés aux dunes et un accès direct aux meilleurs spots de glisse.', 'Pointe du Dragon, Lagune de Dakhla', 'Réservez à l''avance durant la haute saison du kitesurf (avril à novembre).'),
-    ('22222222-0001-0000-0000-000000000001', 'en', 'Dakhla Attitude Lagoon Camp', 'Iconic eco-resort facing the Dakhla lagoon.', 'Dakhla Attitude is an eco-tourism resort located on the dragon point of the lagoon, offering dune-integrated bungalows and direct access to world-class watersports spots.', 'Dragon Point, Dakhla Lagoon', 'Book well in advance during peak kitesurfing season (April to November).'),
-    ('22222222-0001-0000-0000-000000000001', 'ar', 'مخيم داخلة أتيتيود', 'مخيم سياحي بيئي رائد على ضفاف خليج الداخلة.', 'يقع منتجع داخلة أتيتيود في موقع متميز عند نقطة التنين على البحيرة، ويوفر إقامة بيئية متكاملة مع الكثبان الرملية ومرافق لرياضات الكايت سيرف.', 'نقطة التنين، بحيرة الداخلة', 'يُنصح بالحجز المسبق خلال موسم الرياح (من أبريل إلى نونبر).'),
+    -- #01 Dakhla Club
+    ('22222222-0001-0000-0000-000000000001', 'fr', 'Dakhla Club Hotel & Kitesurf', 'Resort hôtelier les pieds dans l''eau face au spot principal de la lagune.', 'Le Dakhla Club Hotel & Spa propose des bungalows modernes et confortables face à la lagune, une piscine panoramique et un centre KBC Kitesurf professionnel.', 'Pointe du Dragon, PK 28, Dakhla', 'Spot idéal pour riders tous niveaux avec vent constant toute l''année.'),
+    ('22222222-0001-0000-0000-000000000001', 'en', 'Dakhla Club Hotel & Kitesurf', 'Beachfront hotel resort facing the prime lagoon kitesurfing spot.', 'Dakhla Club Hotel & Spa offers modern comfortable bungalows overlooking the turquoise lagoon, a scenic pool, and a certified KBC Kitesurf center.', 'Dragon Point, PK 28, Dakhla', 'Ideal spot for riders of all levels with consistent wind year-round.'),
+    ('22222222-0001-0000-0000-000000000001', 'ar', 'فندق ومنتجع داخلة كلوب', 'منتجع فندقي شاطئي يطل مباشرة على مياه الخليج ورياضة الكايت سيرف.', 'يوفر فندق وسبا داخلة كلوب بنغلوهات عصرية ومريحة بإطلالات بانورامية على البحيرة الفيروزية ومسبحا كبيرا ومركزا معتمدا لرياضات التزلج الشراعي.', 'نقطة التنين، النقطة الكيلومترية 28، الداخلة', 'موقع مثالي لجميع مستويات التزلج على الماء مع رياح منتظمة طوال العام.'),
 
     -- #02 PK25
     ('22222222-0001-0000-0000-000000000002', 'fr', 'PK25 Dakhla Boutique Resort', 'Boutique-hôtel contemporain surplombant la lagune au point kilométrique 25.', 'Complexe hôtelier moderne combinant confort haut de gamme, hébergements panoramiques sur pilotis et école de glisse certifiée.', 'Point Kilométrique 25, Route de la Lagune', 'Idéal pour les couples et les familles recherchant le calme face à la lagune.'),
@@ -168,6 +177,36 @@ VALUES
     ('22222222-0001-0000-0000-000000000003', 'fr', 'Ocean Vagabond Lassarga', 'Éco-lodge en bois niché entre océan et lagune à la pointe de Lassarga.', 'Établissement éco-conçu en bois naturel situé à la pointe sud, réputé pour sa vague droite déroulant sur plusieurs centaines de mètres.', 'Pointe de Lassarga, Dakhla', 'Apportez une combinaison néoprène 3/2mm pour les sessions matinales dans l''Atlantique.'),
     ('22222222-0001-0000-0000-000000000003', 'en', 'Ocean Vagabond Lassarga', 'Wooden eco-lodge nestled between ocean and lagoon at Lassarga Point.', 'Eco-designed resort built from natural timber at the southern tip, famous for its world-class peeling right-hand pointbreak wave.', 'Lassarga Point, Dakhla', 'Bring a 3/2mm wetsuit for morning Atlantic surf sessions.'),
     ('22222222-0001-0000-0000-000000000003', 'ar', 'أوشن فاغابوند لوساركا', 'مأوى بيئي خشبي بين المحيط الأطلسي والبحيرة في رأس لوساركا.', 'منتجع صديق للبيئة مشيد بالخشب الطبيعي عند الطرف الجنوبي لشبه الجزيرة، يشتهر بموجته الأطلسية الطويلة المناسبة لركوب الأمواج.', 'رأس لوساركا، الداخلة', 'يوصى بارتداء بدلة غطس مطاطية خلال جلسات ركوب الأمواج الصباحية.'),
+
+    -- #04 West Point
+    ('22222222-0001-0000-0000-000000000004', 'fr', 'West Point Dakhla', 'Éco-resort face aux vagues de l''océan Atlantique à la pointe Oum Lambouir.', 'Chalets écologiques en bois sur la plage d''Oum Lambouir, face à un spot de surf mondialement reconnu avec piscine d''eau de mer naturelle.', 'Plage Oum Lambouir, RN3, Dakhla', 'Parfait pour le surf et les couchers de soleil flamboyants sur l''océan.'),
+    ('22222222-0001-0000-0000-000000000004', 'en', 'West Point Dakhla', 'Eco-resort facing the Atlantic ocean waves at Oum Lambouir point.', 'Ecological wooden chalets situated on Oum Lambouir beach, facing a world-famous surf spot with a natural seawater pool.', 'Oum Lambouir Beach, RN3, Dakhla', 'Perfect for surfing and spectacular Atlantic ocean sunsets.'),
+    ('22222222-0001-0000-0000-000000000004', 'ar', 'ويست بوينت الداخلة', 'منتجع بيئي فاخر على المحيط الأطلسي بشاطئ أم لبوير.', 'شاليهات خشبية بيئية شاطئية أنيقة على رمال أم لبوير، تطل على موقع ركوب أمواج شهير ومسبح مياه بحر طبيعي.', 'شاطئ أم لبوير، الطريق الوطنية 3، الداخلة', 'وجهة رائعة لعشاق ركوب الأمواج ومشاهدة غروب الشمس الأطلسي.'),
+
+    -- #05 Palais Rhoul
+    ('22222222-0001-0000-0000-000000000005', 'fr', 'Le Palais Rhoul & Spa Dakhla', 'Palais de prestige et spa de luxe sur les rives de la lagune de Dakhla.', 'Havre de paix d''inspiration arabo-andalouse mêlant architecture raffinée, suites somptueuses, haute gastronomie et spa d''exception.', '100 Boulevard Mohammed V, Dakhla', 'Expérience hôtelière haut de gamme et sérénité absolue face au lagon.'),
+    ('22222222-0001-0000-0000-000000000005', 'en', 'Le Palais Rhoul & Spa Dakhla', 'Prestigious luxury palace and wellness spa on the shores of the lagoon.', 'Peaceful Arab-Andalusian haven blending refined architecture, lavish suites, fine dining, and an exceptional signature spa.', '100 Boulevard Mohammed V, Dakhla', 'Top-tier luxury experience with ultimate tranquility overlooking the lagoon.'),
+    ('22222222-0001-0000-0000-000000000005', 'ar', 'قصر الغول وسبا الداخلة', 'قصر راقٍ ومنتجع صحي فاخر على ضفاف بحيرة الداخلة.', 'واحة من الهدوء والأناقة بطابع أندلسي أصيل، أجنحة فاخرة، مطبخ راقٍ وتجربة سبا مميزة في بيئة هادئة.', 'شارع محمد الخامس 100، الداخلة', 'تجربة فندقية فاخرة وراحة تامة وإطلالة رائعة على الخليج.'),
+
+    -- #06 La Tour d'Eole
+    ('22222222-0001-0000-0000-000000000006', 'fr', 'La Tour d''Éole Eco-Lodge', 'Hôtel éco-lodge d''exception au cœur des paysages sauvages du sud de la lagune.', 'Intégration architecturale harmonieuse dans les collines désertiques, restaurant gastronomique bio et école de kitesurf privée Ocean Academy.', 'PK 60, Route d''El Argoub, Dakhla', 'Échappée exclusive loin de l''agitation avec vue imprenable sur la lagune.'),
+    ('22222222-0001-0000-0000-000000000006', 'en', 'La Tour d''Éole Eco-Lodge', 'Exceptional eco-lodge hotel nestled in the wild southern lagoon landscapes.', 'Harmonious desert architecture, organic gourmet dining, and private Ocean Academy kitesurfing center in total tranquility.', 'PK 60, Route d''El Argoub, Dakhla', 'Exclusive peaceful escape with breathtaking views across the southern bay.'),
+    ('22222222-0001-0000-0000-000000000006', 'ar', 'فندق برج إيول البيئي', 'منتجع بيئي فريد في قلب المناظر الطبيعية العذراء لجنوب الخليج.', 'تصميم معماري متناغم مع الكثبان والتلال الصحراوية، مطعم راقٍ بمنتجات عضوية ومركز تزلج خاص في هدوء تام.', 'النقطة الكيلومترية 60، طريق العركوب، الداخلة', 'ملاذ حصري واستثنائي يجمع بين الراحة والهدوء البانورامي.'),
+
+    -- #07 La Crique
+    ('22222222-0001-0000-0000-000000000007', 'fr', 'La Crique Nature & Spa Dakhla', 'Hôtel de charme perché sur les falaises avec vue plongeante sur la lagune.', 'Suites en bois et matériaux naturels intégrées à la falaise, bassin d''eau douce et atmosphère intimiste et raffinée.', 'RN3, Falaises Oum Lambouir, Dakhla', 'Vue spectaculaire sur les teintes changeantes de la lagune au coucher du soleil.'),
+    ('22222222-0001-0000-0000-000000000007', 'en', 'La Crique Nature & Spa Dakhla', 'Boutique hotel perched on the cliffs with plunging views over the lagoon.', 'Natural wood suites seamlessly integrated into the cliffs, fresh water pool, and an intimate tranquil atmosphere.', 'RN3, Oum Lambouir Cliffs, Dakhla', 'Spectacular sunset viewpoint overlooking the turquoise waters.'),
+    ('22222222-0001-0000-0000-000000000007', 'ar', 'فندق لا كريك ناتور وسبا الداخلة', 'فندق ساحر على المنحدرات الصخرية بإطلالة خلابة على مياه البحيرة.', 'أجنحة خشبية بتصميم طبيعي متناغم مع التضاريس، حوض ماء عذب وأجواء خاصة وراقية.', 'الطريق الوطنية 3، صخور أم لبوير، الداخلة', 'إطلالة استثنائية على تدرجات ألوان البحيرة الفيروزية عند الغروب.'),
+
+    -- #08 Bavaro Beach
+    ('22222222-0001-0000-0000-000000000008', 'fr', 'Bavaro Beach Dakhla', 'Complexe hôtelier balnéaire contemporain avec accès direct à la plage.', 'Hébergements spacieux, piscine extérieure face à l''océan, restaurant méditerranéen et ambiance conviviale.', 'Km 9, Route Nationale 1100, Dakhla', 'Excellent compromis entre proximité de la ville et sérénité balnéaire.'),
+    ('22222222-0001-0000-0000-000000000008', 'en', 'Bavaro Beach Dakhla', 'Contemporary seaside resort with direct ocean beach access.', 'Spacious modern accommodations, outdoor oceanfront swimming pool, Mediterranean dining, and welcoming atmosphere.', 'Km 9, National Route 1100, Dakhla', 'Great balance between proximity to Dakhla city and seaside calmness.'),
+    ('22222222-0001-0000-0000-000000000008', 'ar', 'منتجع بافارو بيتش الداخلة', 'مجمع فندقي شاطئي عصري مع وصول مباشر إلى الشاطئ.', 'أماكن إقامة واسعة، مسبح خارجي قبالة البحر، مطعم للمأكولات المتوسطية وأجواء مريحة ومرحبة.', 'الكيلومتر 9، الطريق الوطنية 1100، الداخلة', 'موقع متميز يجمع بين القرب من وسط المدينة والاستمتاع بهدوء البحر.'),
+
+    -- #09 Tulum Beach
+    ('22222222-0001-0000-0000-000000000009', 'fr', 'Tulum Beach Resort Dakhla', 'Resort de luxe les pieds dans l''eau sur la côte atlantique.', 'Architecture bohème chic, plusieurs restaurants gastronomiques, immense piscine lagon et suites de grand standing.', 'Km 12, Plage Oum Lambouir, Dakhla', 'Idéal pour les amateurs de détente chic, gastronomie et couchers de soleil.'),
+    ('22222222-0001-0000-0000-000000000009', 'en', 'Tulum Beach Resort Dakhla', 'Luxury beachfront resort on the Atlantic coast.', 'Bohemian-chic architecture, fine dining restaurants, expansive lagoon swimming pool, and high-end suites.', 'Km 12, Oum Lambouir Beach, Dakhla', 'Ideal for travelers seeking refined relaxation, gastronomy, and sunsets.'),
+    ('22222222-0001-0000-0000-000000000009', 'ar', 'منتجع تولوم بيتش الداخلة', 'منتجع شاطئي فاخر على الواجهة الأطلسية.', 'تصميم بوهيمي أنيق، مطاعم راقية، مسبح شاسع وأجنحة فسيحة بأعلى معايير الراحة.', 'الكيلومتر 12، شاطئ أم لبوير، الداخلة', 'مثالي لعشاق الاسترخاء الراقي وتجارب الطهي الفريدة وغروب الشمس الأطلسي.'),
 
     -- #Mama Saida
     ('22222222-0002-0000-0000-000000000099', 'fr', 'Chhiwat Mama Saida — Plats Maison & Cuisine Familiale', 'Adresse populaire et chaleureuse de plats faits maison à Dakhla.', 'Tajines traditionnels mijotés aux légumes frais et olives, poulet rôti croustillant aux frites maison et sauce dghmira, lentilles savoureuses et petit-déjeuner beldi à prix très doux.', 'Quartier populaire, Dakhla (23°42''08.5"N 15°57''01.4"W)', 'Arrivez vers 12h30-13h30 pour déguster les tajines tout juste sortis du feu. Commandes via WhatsApp au 06 58 51 44 04.'),
