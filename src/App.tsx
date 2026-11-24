@@ -12,6 +12,7 @@ import { AboutPage } from './pages/AboutPage';
 import { FavoritesPage } from './pages/FavoritesPage';
 import { AuthPage } from './pages/AuthPage';
 import { AssistantPage } from './pages/AssistantPage';
+import { TripPlannerPage } from './pages/TripPlannerPage';
 
 // Admin CMS Components & Pages
 import { AdminGuard } from './components/admin/AdminGuard';
@@ -39,6 +40,7 @@ export const App: React.FC = () => {
               <Route path="projects" element={<ExplorePage />} />
               <Route path="about" element={<AboutPage />} />
               <Route path="favorites" element={<FavoritesPage />} />
+              <Route path="plan" element={<TripPlannerPage />} />
               <Route path="assistant" element={<AssistantPage />} />
               <Route path="auth" element={<AuthPage />} />
             </Route>

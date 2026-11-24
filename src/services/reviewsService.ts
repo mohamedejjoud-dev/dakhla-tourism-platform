@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase';
+import { supabase, isSupabaseConfigured, withTimeout } from '@/lib/supabase';
 import { SupportedLanguage } from '@/types/database';
 
 export interface ReviewWithAuthor {
@@ -22,19 +22,27 @@ export interface ReviewWithAuthor {
  * Zero email exposure.
  */
 export async function fetchPlaceReviews(placeId: string): Promise<ReviewWithAuthor[]> {
-  const { data: reviews, error: reviewError } = await supabase
-    .from('reviews')
-    .select('id, place_id, user_id, rating, comment, language_code, status, created_at')
-    .eq('place_id', placeId)
-    .eq('status', 'approved')
-    .order('created_at', { ascending: false });
+  if (!isSupabaseConfigured) {
+    return [];
+  }
+
+  const { data: reviews, error: reviewError } = (await withTimeout(
+    supabase
+      .from('reviews')
+      .select('id, place_id, user_id, rating, comment, language_code, status, created_at')
+      .eq('place_id', placeId)
+      .eq('status', 'approved')
+      .order('created_at', { ascending: false }),
+    2000,
+    { data: null, error: new Error('Timeout') }
+  )) as any;
 
   if (reviewError || !reviews || reviews.length === 0) {
     return [];
   }
 
   // Fetch author details through security barrier view
-  const userIds = Array.from(new Set(reviews.map((r) => r.user_id)));
+  const userIds = Array.from(new Set((reviews || []).map((r: any) => r.user_id)));
   const { data: authors, error: authorError } = await supabase
     .from('public_review_authors')
     .select('id, full_name, avatar_url')
@@ -51,7 +59,7 @@ export async function fetchPlaceReviews(placeId: string): Promise<ReviewWithAuth
     }
   }
 
-  return reviews.map((r) => ({
+  return (reviews || []).map((r: any) => ({
     ...r,
     rating: Number(r.rating),
     language_code: r.language_code as SupportedLanguage,

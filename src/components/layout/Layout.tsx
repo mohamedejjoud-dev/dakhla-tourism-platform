@@ -7,7 +7,7 @@ import { CookieBanner } from '@/components/common/CookieBanner';
 
 export const Layout: React.FC = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-sand-50">
+    <div className="min-h-screen flex flex-col bg-[#FCFBF8] text-[#1F2933]">
       <Navbar />
       <main className="flex-1">
         <Outlet />

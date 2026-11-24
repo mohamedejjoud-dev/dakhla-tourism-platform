@@ -11,12 +11,15 @@ import { SeoMeta } from '@/components/seo/SeoMeta';
 import { PlaceCard } from '@/components/places/PlaceCard';
 import { fetchPublishedPlaces } from '@/services/tourismService';
 import { PlaceWithDetails, SupportedLanguage } from '@/types/database';
+import { getCuratedPlaces } from '@/services/curatedPlaces';
+import { WindTideBar } from '@/components/common/WindTideBar';
 
 export const HomePage: React.FC = () => {
   const { t, i18n } = useTranslation();
   const currentLang = (i18n.resolvedLanguage || i18n.language || 'fr') as SupportedLanguage;
 
   const [livePlaces, setLivePlaces] = useState<PlaceWithDetails[]>([]);
+  const [foodBranch, setFoodBranch] = useState<'all' | 'street-food' | 'restaurants'>('all');
 
   useEffect(() => {
     fetchPublishedPlaces({ lang: currentLang }).then((data) => {
@@ -112,91 +115,15 @@ export const HomePage: React.FC = () => {
     },
   ] as unknown as PlaceWithDetails[];
 
-  const activityPlaces: PlaceWithDetails[] = [
-    {
-      id: 'a-1',
-      category_id: '11111111-0004-0000-0000-000000000004',
-      slug: 'pk25-dakhla',
-      latitude: 23.85,
-      longitude: -15.82,
-      price_level: 3,
-      status: 'published',
-      is_featured: true,
-      project_status: 'not_applicable',
-      tags: ['kitesurf', 'wingfoil', 'spot'],
-      created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString(),
-      avg_rating: 4.9,
-      review_count: 520,
-      primaryImageUrl: 'https://images.unsplash.com/photo-1508873696983-2df5293cb395?auto=format&fit=crop&w=800&q=80',
-      category: { id: 'c-4', slug: 'activities', name: t('categories.activities') },
-      translation: {
-        title: 'Kitesurf & Wingfoil au Spot PK25',
-        description: 'Plan d\'eau plat ultra-sécurisé, vent constant de 20 nœuds et écoles certifiées IKO au cœur de la lagune.',
-        isFallback: false,
-      },
-      images: [
-        { id: 'img-a1', place_id: 'a-1', storage_path: 'https://images.unsplash.com/photo-1508873696983-2df5293cb395?auto=format&fit=crop&w=800&q=80', display_order: 1, is_primary: true },
-      ],
-    },
-    {
-      id: 'a-2',
-      category_id: '11111111-0005-0000-0000-000000000005',
-      slug: 'la-dune-blanche-safari',
-      latitude: 23.95,
-      longitude: -15.75,
-      price_level: 2,
-      status: 'published',
-      is_featured: true,
-      project_status: 'not_applicable',
-      tags: ['4x4', 'dune-blanche', 'safari'],
-      created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString(),
-      avg_rating: 5.0,
-      review_count: 389,
-      primaryImageUrl: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=800&q=80',
-      category: { id: 'c-5', slug: 'attractions', name: t('categories.attractions') },
-      translation: {
-        title: 'Safari 4x4 & Coucher de Soleil à la Dune Blanche',
-        description: 'Excursion inoubliable à travers les pistes du désert saharien jusqu\'à la majestueuse dune blanche.',
-        isFallback: false,
-      },
-      images: [
-        { id: 'img-a2', place_id: 'a-2', storage_path: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=800&q=80', display_order: 1, is_primary: true },
-      ],
-    },
-    {
-      id: 'a-3',
-      category_id: '11111111-0004-0000-0000-000000000004',
-      slug: 'ocean-vagabond-lassarga',
-      latitude: 23.62,
-      longitude: -15.98,
-      price_level: 3,
-      status: 'published',
-      is_featured: true,
-      project_status: 'not_applicable',
-      tags: ['surf', 'point-break', 'waves'],
-      created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString(),
-      avg_rating: 4.8,
-      review_count: 210,
-      primaryImageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
-      category: { id: 'c-4', slug: 'activities', name: t('categories.activities') },
-      translation: {
-        title: 'Point Break & Surf à Lassarga',
-        description: 'Vague droite parfaite s\'étendant sur des centaines de mètres sur la pointe sud face au grand large atlantique.',
-        isFallback: false,
-      },
-      images: [
-        { id: 'img-a3', place_id: 'a-3', storage_path: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80', display_order: 1, is_primary: true },
-      ],
-    },
-  ] as unknown as PlaceWithDetails[];
+  const activityPlaces: PlaceWithDetails[] = React.useMemo(() => {
+    const acts = getCuratedPlaces(currentLang, 'activities');
+    return acts.length > 0 ? acts.slice(0, 6) : [];
+  }, [currentLang]);
 
   const diningPlaces: PlaceWithDetails[] = [
     {
-      id: '22222222-0002-0000-0000-000000000099',
-      category_id: '11111111-0002-0000-0000-000000000002',
+      id: '22222222-0003-0000-0000-000000000099',
+      category_id: '11111111-0003-0000-0000-000000000003',
       slug: 'mama-saida',
       latitude: 23.70236,
       longitude: -15.95039,
@@ -208,15 +135,15 @@ export const HomePage: React.FC = () => {
       status: 'published',
       is_featured: true,
       project_status: 'not_applicable',
-      tags: ['homemade', 'fait-maison', 'tagine', 'traditional', 'budget', 'poulet'],
+      tags: ['street-food', 'homemade', 'fait-maison', 'tagine', 'traditional', 'budget', 'poulet'],
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
       avg_rating: 4.9,
       review_count: 142,
       primaryImageUrl: '/images/places/mama-saida/mama-saida-1.webp',
-      category: { id: 'c-2', slug: 'restaurants', name: t('categories.restaurants') },
+      category: { id: 'c-3', slug: 'street-food', name: t('categories.streetFood') },
       translation: {
-        title: 'Chhiwat Mama Saida — Cuisine Familiale',
+        title: 'Chhiwat Mama Saida — Cuisine Familiale & Street Food',
         description: 'Tajines traditionnels fumants aux légumes frais, poulet rôti aux frites & olives, et saveurs familiales à prix doux.',
         isFallback: false,
       },
@@ -241,7 +168,7 @@ export const HomePage: React.FC = () => {
       updated_at: new Date().toISOString(),
       avg_rating: 4.9,
       review_count: 412,
-      primaryImageUrl: 'https://images.unsplash.com/photo-1534482421-64566f976cfa?auto=format&fit=crop&w=800&q=80',
+      primaryImageUrl: 'https://images.unsplash.com/photo-1534482421-64566f976cfa?auto=format&fm=webp&fit=crop&w=800&q=80',
       category: { id: 'c-2', slug: 'restaurants', name: t('categories.restaurants') },
       translation: {
         title: 'Talhamar — Parcs Ostréicoles de Dakhla',
@@ -249,7 +176,7 @@ export const HomePage: React.FC = () => {
         isFallback: false,
       },
       images: [
-        { id: 'img-r1', place_id: 'r-1', storage_path: 'https://images.unsplash.com/photo-1534482421-64566f976cfa?auto=format&fit=crop&w=800&q=80', display_order: 1, is_primary: true },
+        { id: 'img-r1', place_id: 'r-1', storage_path: 'https://images.unsplash.com/photo-1534482421-64566f976cfa?auto=format&fm=webp&fit=crop&w=800&q=80', display_order: 1, is_primary: true },
       ],
     },
     {
@@ -267,7 +194,7 @@ export const HomePage: React.FC = () => {
       updated_at: new Date().toISOString(),
       avg_rating: 4.7,
       review_count: 288,
-      primaryImageUrl: 'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80',
+      primaryImageUrl: 'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fm=webp&fit=crop&w=800&q=80',
       category: { id: 'c-2', slug: 'restaurants', name: t('categories.restaurants') },
       translation: {
         title: 'Casa Pedro & Poissons du Port',
@@ -275,7 +202,7 @@ export const HomePage: React.FC = () => {
         isFallback: false,
       },
       images: [
-        { id: 'img-r2', place_id: 'r-2', storage_path: 'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80', display_order: 1, is_primary: true },
+        { id: 'img-r2', place_id: 'r-2', storage_path: 'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fm=webp&fit=crop&w=800&q=80', display_order: 1, is_primary: true },
       ],
     },
     {
@@ -293,7 +220,7 @@ export const HomePage: React.FC = () => {
       updated_at: new Date().toISOString(),
       avg_rating: 4.8,
       review_count: 195,
-      primaryImageUrl: 'https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=800&q=80',
+      primaryImageUrl: 'https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fm=webp&fit=crop&w=800&q=80',
       category: { id: 'c-2', slug: 'restaurants', name: t('categories.restaurants') },
       translation: {
         title: 'Villa Dakhla Lagoon Dining',
@@ -301,7 +228,7 @@ export const HomePage: React.FC = () => {
         isFallback: false,
       },
       images: [
-        { id: 'img-r3', place_id: 'r-3', storage_path: 'https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=800&q=80', display_order: 1, is_primary: true },
+        { id: 'img-r3', place_id: 'r-3', storage_path: 'https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fm=webp&fit=crop&w=800&q=80', display_order: 1, is_primary: true },
       ],
     },
   ] as unknown as PlaceWithDetails[];
@@ -312,12 +239,17 @@ export const HomePage: React.FC = () => {
     : hotelPlaces;
 
   const displayedActivities = livePlaces.filter(p => p.category?.slug === 'activities').length > 0
-    ? livePlaces.filter(p => p.category?.slug === 'activities').slice(0, 3)
+    ? livePlaces.filter(p => p.category?.slug === 'activities').slice(0, 6)
     : activityPlaces;
 
-  const displayedDining = livePlaces.filter(p => p.category?.slug === 'restaurants').length > 0
-    ? livePlaces.filter(p => p.category?.slug === 'restaurants').slice(0, 3)
+  const allDiningPlaces = livePlaces.filter(p => p.category?.slug === 'restaurants' || p.category?.slug === 'street-food').length > 0
+    ? livePlaces.filter(p => p.category?.slug === 'restaurants' || p.category?.slug === 'street-food')
     : diningPlaces;
+
+  const displayedDining = allDiningPlaces.filter((p) => {
+    if (foodBranch === 'all') return true;
+    return p.category?.slug === foodBranch;
+  });
 
   const websiteSchema = {
     '@context': 'https://schema.org',
@@ -332,7 +264,7 @@ export const HomePage: React.FC = () => {
   };
 
   return (
-    <div className="space-y-12 sm:space-y-16 pb-20 bg-white">
+    <div className="space-y-8 sm:space-y-12 pb-12 bg-[#FCFBF8]">
       <SeoMeta
         title={t('hero.title', 'Dakhlin — Discover Dakhla, Moroccan Sahara')}
         description={t('hero.subtitle')}
@@ -340,46 +272,44 @@ export const HomePage: React.FC = () => {
         structuredData={websiteSchema}
       />
 
-      {/* -------------------------------------------------------------
-          TripAdvisor Style Destination Banner (Dakhla Overview)
-      ------------------------------------------------------------- */}
-      <section className="bg-sand-50/70 border-b border-sand-200/70 py-8 sm:py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div className="space-y-2 max-w-3xl">
-              <div className="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-widest font-mono">
-                <MapPin className="w-3.5 h-3.5 text-[#004F32]" />
-                <span>Sahara Marocain • Région Dakhla-Oued Ed-Dahab</span>
+      {/* Destination Intro Banner */}
+      <section className="bg-[#FCFBF8] border-b border-[#E8E5DE] py-8 sm:py-12">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="space-y-2 max-w-2xl">
+              <div className="flex items-center gap-2 text-xs font-semibold text-[#176B87] uppercase tracking-wider">
+                <MapPin className="w-3.5 h-3.5" />
+                <span>Sahara Marocain • Dakhla Peninsula</span>
               </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 tracking-tight">
-                Visiter Dakhla
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1F2933] tracking-tight">
+                {t('hero.title', 'Dakhlin — Discover Dakhla')}
               </h1>
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
-                Découvrez les meilleurs hôtels, camps de kitesurf, restaurants de fruits de mer et trésors naturels de la péninsule de Dakhla.
+              <p className="text-xs sm:text-sm text-[#667580] leading-relaxed">
+                {t('hero.subtitle', 'Your authentic guide to exceptional kitesurfing, Saharan eco-lodges, fresh oysters, and regional wonders.')}
               </p>
             </div>
 
-            {/* Quick Trip Planning Pills */}
-            <div className="flex flex-wrap items-center gap-2.5 shrink-0">
+            {/* Quick Discover Category Links */}
+            <div className="flex flex-wrap items-center gap-2 shrink-0">
               <Link
                 to="/explore?cat=hotels"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white border border-sand-300 text-xs font-bold text-slate-800 hover:border-slate-950 shadow-2xs transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-[#E8E5DE] hover:border-[#176B87] text-xs font-medium text-[#1F2933] transition-colors"
               >
-                <Hotel className="w-4 h-4 text-[#004F32]" />
+                <Hotel className="w-3.5 h-3.5 text-[#176B87]" />
                 <span>{t('categories.hotels')}</span>
               </Link>
               <Link
                 to="/explore?cat=activities"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white border border-sand-300 text-xs font-bold text-slate-800 hover:border-slate-950 shadow-2xs transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-[#E8E5DE] hover:border-[#176B87] text-xs font-medium text-[#1F2933] transition-colors"
               >
-                <Waves className="w-4 h-4 text-[#004F32]" />
+                <Waves className="w-3.5 h-3.5 text-[#176B87]" />
                 <span>{t('categories.activities')}</span>
               </Link>
               <Link
                 to="/explore?cat=restaurants"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white border border-sand-300 text-xs font-bold text-slate-800 hover:border-slate-950 shadow-2xs transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-[#E8E5DE] hover:border-[#176B87] text-xs font-medium text-[#1F2933] transition-colors"
               >
-                <Utensils className="w-4 h-4 text-[#004F32]" />
+                <Utensils className="w-3.5 h-3.5 text-[#176B87]" />
                 <span>{t('categories.restaurants')}</span>
               </Link>
             </div>
@@ -387,119 +317,211 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* -------------------------------------------------------------
-          TripAdvisor Section 1: Hébergements (Hotels & Camps)
-      ------------------------------------------------------------- */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between mb-5">
+      {/* Live Maritime & Tide Intelligence Bar */}
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 -mt-4 sm:-mt-6 relative z-10">
+        <WindTideBar />
+      </div>
+
+      {/* Section 1: Hébergements (Hotels & Camps) */}
+      <section className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+        <div className="flex items-baseline justify-between mb-5">
           <div>
-            <h2 className="text-xl sm:text-2xl font-bold text-slate-950 tracking-tight">
-              Hébergements
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-[#1F2933] tracking-tight">
+              {t('categories.hotels')}
             </h2>
-            <p className="text-xs sm:text-sm text-slate-500">
-              Les camps de kitesurf et éco-resorts les plus appréciés des voyageurs à Dakhla
+            <p className="text-xs text-[#667580] mt-0.5">
+              Eco-resorts et camps d'exception au bord de la lagune
             </p>
           </div>
           <Link
             to="/explore?cat=hotels"
-            className="text-xs sm:text-sm font-bold text-slate-950 hover:text-[#004F32] underline underline-offset-4 shrink-0"
+            className="text-xs font-medium text-[#176B87] hover:underline transition-colors"
           >
-            Tout afficher
+            Tout afficher →
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {displayedHotels.map((place) => (
-            <PlaceCard key={place.id} place={place} />
-          ))}
-        </div>
+        {displayedHotels.length === 1 ? (
+          <div className="max-w-[360px] sm:max-w-[400px]">
+            <PlaceCard place={displayedHotels[0]} />
+          </div>
+        ) : displayedHotels.length === 2 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 max-w-2xl gap-5 sm:gap-6">
+            {displayedHotels.map((place) => (
+              <PlaceCard key={place.id} place={place} />
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {displayedHotels.map((place) => (
+              <PlaceCard key={place.id} place={place} />
+            ))}
+          </div>
+        )}
       </section>
 
-      {/* -------------------------------------------------------------
-          TripAdvisor Section 2: Activités & Kitesurf
-      ------------------------------------------------------------- */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between mb-5">
+      {/* Section 2: Activités & Kitesurf */}
+      <section className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+        <div className="flex items-baseline justify-between mb-5">
           <div>
-            <h2 className="text-xl sm:text-2xl font-bold text-slate-950 tracking-tight">
-              Activités & Kitesurf à Dakhla
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-[#1F2933] tracking-tight">
+              {t('categories.activities')}
             </h2>
-            <p className="text-xs sm:text-sm text-slate-500">
-              Glisse sur la lagune turquoise, downwinders et safaris 4x4 dans les dunes du Sahara
+            <p className="text-xs text-[#667580] mt-0.5">
+              Glisse sur la lagune turquoise et safaris dans les dunes
             </p>
           </div>
           <Link
             to="/explore?cat=activities"
-            className="text-xs sm:text-sm font-bold text-slate-950 hover:text-[#004F32] underline underline-offset-4 shrink-0"
+            className="text-xs font-medium text-[#176B87] hover:underline transition-colors"
           >
-            Tout afficher
+            Tout afficher →
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {displayedActivities.map((place) => (
-            <PlaceCard key={place.id} place={place} />
-          ))}
-        </div>
+        {displayedActivities.length === 1 ? (
+          <div className="max-w-[360px] sm:max-w-[400px]">
+            <PlaceCard place={displayedActivities[0]} />
+          </div>
+        ) : displayedActivities.length === 2 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 max-w-2xl gap-5 sm:gap-6">
+            {displayedActivities.map((place) => (
+              <PlaceCard key={place.id} place={place} />
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {displayedActivities.map((place) => (
+              <PlaceCard key={place.id} place={place} />
+            ))}
+          </div>
+        )}
       </section>
 
-      {/* -------------------------------------------------------------
-          TripAdvisor Section 3: Restaurants & Gastronomie
-      ------------------------------------------------------------- */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between mb-5">
+      {/* Section 3: Saveurs & Gastronomie */}
+      <section className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-3 mb-5">
           <div>
-            <h2 className="text-xl sm:text-2xl font-bold text-slate-950 tracking-tight">
-              Restaurants & Gastronomie
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-[#1F2933] tracking-tight">
+              Gastronomie & Street Food
             </h2>
-            <p className="text-xs sm:text-sm text-slate-500">
-              Huîtres fraîches élevées dans la lagune, poissons sauvages du port et thé sahraoui
+            <p className="text-xs text-[#667580] mt-0.5">
+              Saveurs locales, street food chez l'habitant et tables panoramiques
             </p>
           </div>
-          <Link
-            to="/explore?cat=restaurants"
-            className="text-xs sm:text-sm font-bold text-slate-950 hover:text-[#004F32] underline underline-offset-4 shrink-0"
-          >
-            Tout afficher
-          </Link>
+
+          {/* Interactive Branch Switcher */}
+          <div className="flex items-center gap-1 p-1 bg-[#FCFBF8] rounded-full border border-[#E8E5DE] self-start sm:self-auto shrink-0">
+            <button
+              onClick={() => setFoodBranch('all')}
+              className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${
+                foodBranch === 'all'
+                  ? 'bg-[#176B87] text-white shadow-2xs font-semibold'
+                  : 'text-[#667580] hover:text-[#1F2933]'
+              }`}
+            >
+              Tous
+            </button>
+            <button
+              onClick={() => setFoodBranch('street-food')}
+              className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${
+                foodBranch === 'street-food'
+                  ? 'bg-[#176B87] text-white shadow-2xs font-semibold'
+                  : 'text-[#667580] hover:text-[#1F2933]'
+              }`}
+            >
+              Street Food
+            </button>
+            <button
+              onClick={() => setFoodBranch('restaurants')}
+              className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${
+                foodBranch === 'restaurants'
+                  ? 'bg-[#176B87] text-white shadow-2xs font-semibold'
+                  : 'text-[#667580] hover:text-[#1F2933]'
+              }`}
+            >
+              Restaurants
+            </button>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {displayedDining.map((place) => (
-            <PlaceCard key={place.id} place={place} />
-          ))}
+        {displayedDining.length === 1 ? (
+          <div className="max-w-[360px] sm:max-w-[400px]">
+            <PlaceCard place={displayedDining[0]} />
+          </div>
+        ) : displayedDining.length === 2 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 max-w-2xl gap-5 sm:gap-6">
+            {displayedDining.map((place) => (
+              <PlaceCard key={place.id} place={place} />
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {displayedDining.map((place) => (
+              <PlaceCard key={place.id} place={place} />
+            ))}
+          </div>
+        )}
+      </section>
+
+      {/* Plan My Trip Feature Section (Clean, Premium, Spacious) */}
+      <section className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+        <div className="rounded-3xl bg-white border border-[#E8E5DE] p-8 sm:p-10 md:p-12 text-center max-w-3xl mx-auto shadow-xs space-y-5">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F3E8D2]/50 text-[#176B87] text-[11px] font-bold uppercase tracking-wider">
+            <span>{t('planner.title', 'Plan My Trip')}</span>
+          </div>
+
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1F2933] tracking-tight">
+            {t('planner.homeSectionTitle', 'Plan your Dakhla trip')}
+          </h2>
+
+          <p className="text-xs sm:text-sm text-[#667580] max-w-xl mx-auto leading-relaxed">
+            {t('planner.homeSectionDesc', 'Tell El Haj what you enjoy, how long you are staying and your budget. El Haj will create a personalized day-by-day experience for you.')}
+          </p>
+
+          <div className="pt-2">
+            <Link
+              to="/plan"
+              className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-[#176B87] hover:bg-[#13586F] text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-lg active:scale-98 transition-all"
+            >
+              {t('planner.cta', 'Start planning my trip')}
+            </Link>
+          </div>
+
+          <p className="text-[11px] font-medium text-[#667580] tracking-wide pt-2">
+            {t('planner.homeBadges', 'Budget • Food • Activities • Places • Stays')}
+          </p>
         </div>
       </section>
 
-      {/* -------------------------------------------------------------
-          TripAdvisor Feature Banner: L7aj Concierge IA
-      ------------------------------------------------------------- */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-3xl bg-[#004F32] text-white p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-md relative overflow-hidden">
-          <div className="flex items-center gap-5 sm:gap-6 z-10">
+      {/* Feature Concierge Card: AI Companion (Light, Coastal) */}
+      <section className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+        <div className="rounded-2xl bg-[#F3E8D2]/40 border border-[#E8E5DE] p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-5">
+          <div className="flex items-center gap-4 sm:gap-5">
             <img 
-              src="/images/elhaj-avatar.jpg" 
-              alt="L7aj IA" 
-              className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover border-4 border-white/30 shadow-xl shrink-0" 
+              src="/images/elhaj-avatar.webp" 
+              alt="El Haj" 
+              className="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border-2 border-white shadow-xs shrink-0" 
             />
-            <div className="space-y-1.5">
-              <span className="text-[11px] font-mono font-bold tracking-widest uppercase text-emerald-300">
-                Concierge Régional Intelligent
+            <div className="space-y-1">
+              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#176B87]">
+                Concierge de voyage
               </span>
-              <h3 className="text-2xl sm:text-3xl font-black tracking-tight text-white">
-                Besoin de conseils personnalisés sur Dakhla ?
+              <h3 className="text-lg sm:text-xl font-bold tracking-tight text-[#1F2933]">
+                Besoin de conseils personnalisés à Dakhla ?
               </h3>
-              <p className="text-xs sm:text-sm text-emerald-100 max-w-xl font-normal">
-                Demandez à L7aj les prévisions de vent pour le kitesurf, les horaires des marées à la Dune Blanche ou les meilleures tables d'huîtres.
+              <p className="text-xs text-[#667580] max-w-xl font-normal leading-relaxed">
+                Spots de kitesurf, marées à la Dune Blanche ou adresses d'huîtres : demandez conseil à El Haj.
               </p>
             </div>
           </div>
-          <Link
-            to="/assistant"
-            className="px-6 py-3 rounded-full bg-white hover:bg-sand-50 text-[#004F32] font-bold text-xs uppercase tracking-wider shrink-0 transition-colors shadow-sm z-10"
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new CustomEvent('open-dakhlin-ai'))}
+            className="px-4 py-2 rounded-full bg-[#176B87] hover:bg-[#13586F] text-white font-medium text-xs shrink-0 transition-colors shadow-2xs"
           >
-            Discuter avec L7aj IA
-          </Link>
+            {t('nav.askAi', 'Ask El Haj')}
+          </button>
         </div>
       </section>
 

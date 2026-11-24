@@ -34,7 +34,7 @@ export const AboutPage: React.FC = () => {
   ];
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 space-y-14">
+    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8 sm:py-10 space-y-8">
       <SeoMeta
         title="About Dakhla — La Perle du Sahara Marocain"
         description="Une péninsule d'exception s'étendant sur 40 kilomètres entre l'Océan Atlantique et une lagune turquoise classée d'importance internationale."
@@ -60,7 +60,7 @@ export const AboutPage: React.FC = () => {
       {/* Atmospheric Photographic Banner */}
       <div className="relative aspect-[21/9] rounded-3xl overflow-hidden shadow-editorial bg-ocean-950">
         <img
-          src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80"
+          src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fm=webp&fit=crop&w=1600&q=80"
           alt="Vue aérienne de la péninsule de Dakhla"
           className="w-full h-full object-cover"
         />

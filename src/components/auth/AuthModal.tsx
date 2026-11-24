@@ -84,11 +84,11 @@ export const AuthModal: React.FC<AuthModalProps> = ({
 
   return (
     <div 
-      className="fixed inset-0 z-50 overflow-y-auto p-4 sm:p-6 bg-slate-950/80 backdrop-blur-md flex items-center justify-center animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 overflow-y-auto p-4 sm:p-6 bg-[#176B87]/60 backdrop-blur-sm flex items-start sm:items-center justify-center animate-in fade-in duration-200"
       onClick={(e) => { if (e.target === e.currentTarget) handleClose(); }}
     >
       <div 
-        className="relative w-full max-w-md my-auto bg-white rounded-3xl shadow-2xl border border-sand-300 max-h-[calc(100dvh-3rem)] flex flex-col overflow-hidden animate-in zoom-in-95 duration-200"
+        className="relative w-full max-w-md my-auto bg-white rounded-3xl shadow-xl border border-[#E8E5DE] max-h-[calc(100dvh-2.5rem)] flex flex-col overflow-hidden animate-in zoom-in-95 duration-200"
         role="dialog"
         aria-modal="true"
         onClick={(e) => e.stopPropagation()}
@@ -96,7 +96,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
         {/* Close Button - Always at top end */}
         <button
           onClick={handleClose}
-          className="absolute top-4 end-4 z-30 p-2 rounded-xl text-slate-400 hover:text-slate-900 hover:bg-sand-100 transition-colors focus:outline-none"
+          className="absolute top-4 end-4 z-30 p-2 rounded-xl text-[#667580] hover:text-[#1F2933] hover:bg-[#FCFBF8] transition-colors focus:outline-none"
           aria-label="Close auth dialog"
         >
           <X className="w-5 h-5" />
@@ -108,15 +108,15 @@ export const AuthModal: React.FC<AuthModalProps> = ({
           {/* Modal Header */}
           <div className="p-8 pb-3 text-center space-y-3">
             <img 
-              src="/images/elhaj-avatar.jpg" 
-              alt="Dakhlin — El Haj" 
-              className="w-14 h-14 rounded-full object-cover border-2 border-[#004F32] shadow-md mx-auto" 
+              src="/images/logo-symbol.svg" 
+              alt="Dakhlin" 
+              className="w-12 h-14 object-contain mx-auto" 
             />
             <div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-slate-950 tracking-tight">
+              <h2 className="text-2xl font-bold text-[#1F2933] tracking-tight">
                 {mode === 'signin' ? t('auth.signIn') : t('auth.signUp')}
               </h2>
-              <p className="text-xs text-slate-500 uppercase tracking-wider font-semibold mt-1">
+              <p className="text-xs text-[#667580] uppercase tracking-wider font-semibold mt-1">
                 Dakhlin • Espace Voyageur
               </p>
             </div>
@@ -124,14 +124,14 @@ export const AuthModal: React.FC<AuthModalProps> = ({
 
           {/* Tab Switcher */}
           <div className="px-8 pt-1">
-            <div className="grid grid-cols-2 p-1.5 bg-sand-100/80 rounded-2xl text-xs font-semibold text-center">
+            <div className="grid grid-cols-2 p-1 bg-[#FCFBF8] rounded-2xl text-xs font-semibold text-center border border-[#E8E5DE]">
               <button
                 type="button"
                 onClick={() => { setMode('signin'); setErrorMsg(null); }}
                 className={`py-2 rounded-xl transition-all flex items-center justify-center gap-1.5 ${
                   mode === 'signin' 
-                    ? 'bg-white text-ocean-950 shadow-xs font-bold' 
-                    : 'text-slate-600 hover:text-ocean-950'
+                    ? 'bg-white text-[#176B87] shadow-2xs font-bold' 
+                    : 'text-[#667580] hover:text-[#1F2933]'
                 }`}
               >
                 <LogIn className="w-3.5 h-3.5" />
@@ -142,8 +142,8 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                 onClick={() => { setMode('signup'); setErrorMsg(null); }}
                 className={`py-2 rounded-xl transition-all flex items-center justify-center gap-1.5 ${
                   mode === 'signup' 
-                    ? 'bg-white text-ocean-950 shadow-xs font-bold' 
-                    : 'text-slate-600 hover:text-ocean-950'
+                    ? 'bg-white text-[#176B87] shadow-2xs font-bold' 
+                    : 'text-[#667580] hover:text-[#1F2933]'
                 }`}
               >
                 <UserPlus className="w-3.5 h-3.5" />
@@ -165,46 +165,46 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             
             {mode === 'signup' && (
               <div className="space-y-1">
-                <label className="text-xs font-semibold text-ocean-950 uppercase tracking-wider font-mono">
+                <label className="text-xs font-semibold text-[#1F2933] uppercase tracking-wider font-mono">
                   {t('auth.fullName')}
                 </label>
                 <div className="relative">
-                  <User className="absolute start-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                  <User className="absolute start-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#667580]" />
                   <input
                     type="text"
                     required
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     placeholder="Youssef El Alami"
-                    className="w-full ps-11 pe-4 py-2.5 rounded-xl border border-sand-200 bg-sand-50/40 text-ocean-950 text-sm focus:outline-none focus:ring-2 focus:ring-lagoon-500/20 focus:border-lagoon-500 transition-colors"
+                    className="w-full ps-11 pe-4 py-2.5 rounded-xl border border-[#E8E5DE] bg-[#FCFBF8] text-[#1F2933] text-sm focus:outline-none focus:ring-1 focus:ring-[#176B87] focus:border-[#176B87] transition-colors"
                   />
                 </div>
               </div>
             )}
 
             <div className="space-y-1">
-              <label className="text-xs font-semibold text-ocean-950 uppercase tracking-wider font-mono">
+              <label className="text-xs font-semibold text-[#1F2933] uppercase tracking-wider font-mono">
                 {t('auth.email')}
               </label>
               <div className="relative">
-                <Mail className="absolute start-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                <Mail className="absolute start-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#667580]" />
                 <input
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="name@example.com"
-                  className="w-full ps-11 pe-4 py-2.5 rounded-xl border border-sand-200 bg-sand-50/40 text-ocean-950 text-sm focus:outline-none focus:ring-2 focus:ring-lagoon-500/20 focus:border-lagoon-500 transition-colors"
+                  className="w-full ps-11 pe-4 py-2.5 rounded-xl border border-[#E8E5DE] bg-[#FCFBF8] text-[#1F2933] text-sm focus:outline-none focus:ring-1 focus:ring-[#176B87] focus:border-[#176B87] transition-colors"
                 />
               </div>
             </div>
 
             <div className="space-y-1">
-              <label className="text-xs font-semibold text-ocean-950 uppercase tracking-wider font-mono">
+              <label className="text-xs font-semibold text-[#1F2933] uppercase tracking-wider font-mono">
                 {t('auth.password')}
               </label>
               <div className="relative">
-                <Lock className="absolute start-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                <Lock className="absolute start-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#667580]" />
                 <input
                   type="password"
                   required
@@ -212,7 +212,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full ps-11 pe-4 py-2.5 rounded-xl border border-sand-200 bg-sand-50/40 text-ocean-950 text-sm focus:outline-none focus:ring-2 focus:ring-lagoon-500/20 focus:border-lagoon-500 transition-colors"
+                  className="w-full ps-11 pe-4 py-2.5 rounded-xl border border-[#E8E5DE] bg-[#FCFBF8] text-[#1F2933] text-sm focus:outline-none focus:ring-1 focus:ring-[#176B87] focus:border-[#176B87] transition-colors"
                 />
               </div>
             </div>
@@ -220,7 +220,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3.5 rounded-xl bg-slate-950 hover:bg-slate-900 text-white font-semibold text-xs tracking-wider uppercase shadow-xs transition-colors disabled:opacity-50 mt-2"
+              className="w-full py-3 rounded-xl bg-[#176B87] hover:bg-[#13586F] text-white font-semibold text-xs tracking-wider uppercase shadow-xs transition-colors disabled:opacity-50 mt-2"
             >
               {loading ? t('common.loading') : (mode === 'signin' ? t('auth.submitSignIn') : t('auth.submitSignUp'))}
             </button>
@@ -228,9 +228,9 @@ export const AuthModal: React.FC<AuthModalProps> = ({
 
           {/* Divider */}
           <div className="px-8 flex items-center gap-3">
-            <div className="flex-1 h-px bg-sand-200" />
-            <span className="text-[11px] text-slate-400 font-mono uppercase tracking-widest">{t('auth.or')}</span>
-            <div className="flex-1 h-px bg-sand-200" />
+            <div className="flex-1 h-px bg-[#E8E5DE]" />
+            <span className="text-[11px] text-[#667580] font-mono uppercase tracking-widest">{t('auth.or')}</span>
+            <div className="flex-1 h-px bg-[#E8E5DE]" />
           </div>
 
           {/* Google OAuth Button */}
@@ -238,7 +238,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             <button
               type="button"
               onClick={handleGoogleSignIn}
-              className="w-full py-2.5 px-4 rounded-xl border border-sand-200/90 bg-white hover:bg-sand-50 text-slate-700 font-semibold text-xs flex items-center justify-center gap-2.5 shadow-xs transition-colors"
+              className="w-full py-2.5 px-4 rounded-xl border border-[#E8E5DE] bg-white hover:bg-[#FCFBF8] text-[#1F2933] font-semibold text-xs flex items-center justify-center gap-2.5 shadow-xs transition-colors"
             >
               <svg className="w-4 h-4" viewBox="0 0 24 24">
                 <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />

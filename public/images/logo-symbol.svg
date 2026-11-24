@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120" fill="none">
+  <!-- Outer Arch Outline -->
+  <path 
+    d="M 12,112 L 12,50 A 38,38 0 0,1 88,50 L 88,112 Z" 
+    stroke="#0E6E77" 
+    stroke-width="7" 
+    stroke-linejoin="round"
+    stroke-linecap="round"
+    fill="none"
+  />
+  
+  <!-- Central Sun Arch -->
+  <path 
+    d="M 32,82 L 32,54 A 18,18 0 0,1 68,54 L 68,78" 
+    stroke="#0E6E77" 
+    stroke-width="6" 
+    stroke-linecap="round"
+    fill="none"
+  />
+
+  <!-- High Dune Line -->
+  <path 
+    d="M 12,98 C 28,98 38,82 58,82 C 72,82 82,90 88,94" 
+    stroke="#0E6E77" 
+    stroke-width="6" 
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"
+  />
+
+  <!-- Lagoon Water / Lower Dune Wave Line -->
+  <path 
+    d="M 12,106 C 26,106 38,96 52,96 C 68,96 78,104 88,104" 
+    stroke="#0E6E77" 
+    stroke-width="6" 
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"
+  />
+</svg>

@@ -4,13 +4,15 @@
 
 @layer base {
   :root {
-    --color-lagoon-primary: #028090;
-    --color-lagoon-vibrant: #00A896;
-    --color-ocean-deep: #072033;
-    --color-ocean-dark: #03121F;
-    --color-sand-warm: #B58E5E;
-    --color-sand-bg: #FAF6EE;
-    --color-terracotta: #D06041;
+    --color-ocean: #176B87;
+    --color-turquoise: #35A7A0;
+    --color-sand-warm: #D8B67A;
+    --color-sand-soft: #F3E8D2;
+    --color-bg: #FCFBF8;
+    --color-card: #FFFFFF;
+    --color-text-primary: #1F2933;
+    --color-text-secondary: #667580;
+    --color-border: #E8E5DE;
   }
 
   html {
@@ -36,42 +38,47 @@
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   }
 
   body {
     min-height: 100vh;
     overflow-x: hidden;
-    background-color: #FAF6EE;
-    color: #151E2E;
+    background-color: #FCFBF8;
+    color: #1F2933;
   }
 
   /* Accessible focus rings */
   :focus-visible {
-    outline: 2px solid #00A896;
+    outline: 2px solid #176B87;
     outline-offset: 2px;
   }
 }
 
 /* Custom Editorial Scrollbar */
 ::-webkit-scrollbar {
-  width: 9px;
-  height: 9px;
+  width: 7px;
+  height: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #FAF6EE;
+  background: #FCFBF8;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #D8C1A2;
+  background: #E8E5DE;
   border-radius: 9999px;
-  border: 2px solid #FAF6EE;
+  border: 2px solid #FCFBF8;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #028090;
+  background: #35A7A0;
 }
 
 /* Editorial subtle animations and utility classes */
@@ -86,12 +93,10 @@
   }
 
   .hero-sheen {
-    background: linear-gradient(
-      180deg,
-      rgba(7, 32, 51, 0.25) 0%,
-      rgba(7, 32, 51, 0.65) 60%,
-      rgba(3, 18, 31, 0.92) 100%
-    );
+    background: linear-gradient(180deg,
+        rgba(7, 32, 51, 0.25) 0%,
+        rgba(7, 32, 51, 0.65) 60%,
+        rgba(3, 18, 31, 0.92) 100%);
   }
 
   .sand-grain {
@@ -102,7 +107,10 @@
 
 /* Reduce motion accessibility */
 @media (prefers-reduced-motion: reduce) {
-  *, ::before, ::after {
+
+  *,
+  ::before,
+  ::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

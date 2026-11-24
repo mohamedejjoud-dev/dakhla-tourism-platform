@@ -8,8 +8,7 @@ import {
   Fish, 
   SunMedium, 
   Compass, 
-  ShieldCheck, 
-  Sparkles
+  ShieldCheck
 } from 'lucide-react';
 import { useL7ajChat } from '@/hooks/useL7ajChat';
 import { SeoMeta } from '@/components/seo/SeoMeta';
@@ -46,33 +45,30 @@ export const AssistantPage: React.FC = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 space-y-8">
+    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8 sm:py-10 space-y-6">
       <SeoMeta
-        title="L7aj AI Concierge — Local Dakhla Expert"
+        title="El Haj — AI Concierge"
         description={t('assistant.greeting')}
         canonicalPath="/assistant"
       />
       
       {/* Editorial Header Banner */}
-      <div className="p-8 sm:p-10 rounded-3xl bg-slate-900 text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-editorial border border-sand-300/20 relative overflow-hidden">
-        {/* Subtle decorative glow */}
-        <div className="absolute -top-16 -end-16 w-64 h-64 rounded-full bg-emerald-500/10 blur-2xl pointer-events-none" />
-
-        <div className="relative z-10 flex items-center gap-5">
+      <div className="p-6 sm:p-8 rounded-2xl bg-[#176B87] text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-5 shadow-xs border border-white/20 relative overflow-hidden">
+        <div className="relative z-10 flex items-center gap-4">
           <img 
-            src="/images/elhaj-avatar.jpg" 
-            alt="L7aj Concierge IA" 
-            className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover border-2 border-emerald-400 shadow-xl" 
+            src="/images/elhaj-avatar.webp" 
+            alt="El Haj" 
+            className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl object-cover border-2 border-white/40 shadow-sm" 
           />
-          <div className="space-y-1.5">
-            <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-white/10 text-emerald-300 text-[11px] font-mono font-bold border border-white/10">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>L7aj • Concierge Virtuel 24/7</span>
+          <div className="space-y-1">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/10 text-white text-[11px] font-semibold border border-white/15">
+              <span className="w-2 h-2 rounded-full bg-[#35A7A0]" />
+              <span>El Haj • Concierge 24/7</span>
             </div>
-            <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-sand-50">
-              {t('assistant.name')}
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-white">
+              {t('assistant.name', 'El Haj')}
             </h1>
-            <p className="text-xs sm:text-sm text-sand-200/90 max-w-xl font-normal">
+            <p className="text-xs sm:text-sm text-white/90 max-w-xl font-normal">
               {t('assistant.tagline')}
             </p>
           </div>
@@ -81,7 +77,7 @@ export const AssistantPage: React.FC = () => {
         <button
           type="button"
           onClick={clearChat}
-          className="relative z-10 inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-sand-100 text-xs font-semibold uppercase tracking-wider transition-colors border border-white/15"
+          className="relative z-10 inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-medium transition-colors border border-white/15"
         >
           <Trash2 className="w-3.5 h-3.5" />
           <span>{t('assistant.clear')}</span>
@@ -95,7 +91,7 @@ export const AssistantPage: React.FC = () => {
         <aside className="lg:col-span-4 space-y-6">
           <div className="bg-white p-6 sm:p-7 rounded-3xl border border-sand-200/90 shadow-editorial space-y-5">
             <h3 className="font-serif font-bold text-lg text-ocean-950 flex items-center gap-2 pb-3 border-b border-sand-100">
-              <Sparkles className="w-4 h-4 text-lagoon-600" />
+              <Compass className="w-4 h-4 text-ocean-900" />
               <span>Questions Suggérées</span>
             </h3>
 
@@ -123,40 +119,40 @@ export const AssistantPage: React.FC = () => {
             </div>
 
             <div className="pt-4 border-t border-sand-100 text-xs text-slate-500 space-y-2">
-              <div className="flex items-center gap-1.5 text-lagoon-700 font-bold font-mono">
+              <div className="flex items-center gap-1.5 text-[#176B87] font-semibold text-xs">
                 <ShieldCheck className="w-4 h-4" />
                 <span>Source de Vérité Régionale</span>
               </div>
-              <p className="leading-relaxed font-light text-[11px]">
-                Les réponses de L7aj s'appuient strictement sur la géographie officielle et le catalogue de lieux vérifiés de Dakhla-Oued Ed-Dahab.
+              <p className="leading-relaxed font-light text-[11px] text-[#667580]">
+                Les réponses d'El Haj s'appuient strictement sur la géographie officielle et le catalogue de lieux vérifiés de Dakhla-Oued Ed-Dahab.
               </p>
             </div>
           </div>
         </aside>
 
         {/* Right Main Conversational Viewport (8 Cols) */}
-        <div className="lg:col-span-8 bg-white rounded-3xl border border-sand-200/90 shadow-editorial flex flex-col h-[650px] overflow-hidden">
+        <div className="lg:col-span-8 bg-white rounded-2xl border border-[#E8E5DE] shadow-xs flex flex-col h-[600px] overflow-hidden">
           
           {/* Chat Messages Scrollable Box */}
-          <div className="flex-1 overflow-y-auto p-6 sm:p-8 space-y-5 bg-sand-25/50">
+          <div className="flex-1 overflow-y-auto p-5 sm:p-6 space-y-4 bg-[#FCFBF8]">
             {messages.map((msg) => (
               <div
                 key={msg.id}
-                className={`flex gap-3.5 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                className={`flex gap-3 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 {msg.role === 'assistant' && (
                   <img 
-                    src="/images/elhaj-avatar.jpg" 
-                    alt="L7aj" 
-                    className="w-8 h-8 rounded-full object-cover shrink-0 shadow-xs border border-sand-300 mt-0.5" 
+                    src="/images/elhaj-avatar.webp" 
+                    alt="El Haj" 
+                    className="w-7 h-7 rounded-full object-cover shrink-0 shadow-xs border border-[#E8E5DE] mt-0.5" 
                   />
                 )}
                 
                 <div
-                  className={`max-w-[78%] rounded-2xl p-4 sm:p-5 leading-relaxed text-xs sm:text-sm shadow-xs ${
+                  className={`max-w-[80%] rounded-2xl p-3.5 sm:p-4 leading-relaxed text-xs sm:text-sm shadow-2xs ${
                     msg.role === 'user'
-                      ? 'bg-slate-900 text-sand-50 rounded-ee-sm'
-                      : 'bg-white text-slate-850 border border-sand-200/80 rounded-es-sm'
+                      ? 'bg-[#176B87] text-white rounded-ee-sm'
+                      : 'bg-white text-[#1F2933] border border-[#E8E5DE] rounded-es-sm'
                   }`}
                 >
                   <p className="whitespace-pre-wrap font-normal leading-relaxed">{msg.text}</p>
@@ -165,14 +161,14 @@ export const AssistantPage: React.FC = () => {
             ))}
 
             {loading && (
-              <div className="flex gap-3.5 justify-start">
+              <div className="flex gap-3 justify-start">
                 <img 
-                  src="/images/elhaj-avatar.jpg" 
-                  alt="L7aj" 
-                  className="w-8 h-8 rounded-full object-cover shrink-0 shadow-xs border border-sand-300 mt-0.5" 
+                  src="/images/elhaj-avatar.webp" 
+                  alt="El Haj" 
+                  className="w-7 h-7 rounded-full object-cover shrink-0 shadow-xs border border-[#E8E5DE] mt-0.5" 
                 />
-                <div className="bg-white border border-sand-200/90 rounded-2xl rounded-es-sm p-4 flex items-center gap-2 text-slate-400">
-                  <span className="w-2 h-2 rounded-full bg-lagoon-500 animate-bounce" />
+                <div className="bg-white border border-[#E8E5DE] rounded-2xl rounded-es-sm p-3 flex items-center gap-1.5 text-[#667580]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#35A7A0] animate-bounce" />
                   <span className="w-2 h-2 rounded-full bg-lagoon-500 animate-bounce [animation-delay:0.2s]" />
                   <span className="w-2 h-2 rounded-full bg-lagoon-500 animate-bounce [animation-delay:0.4s]" />
                 </div>

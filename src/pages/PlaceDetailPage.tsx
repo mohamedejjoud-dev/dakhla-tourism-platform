@@ -25,6 +25,7 @@ import { PlaceWithDetails, SupportedLanguage } from '@/types/database';
 import { LeafletMap } from '@/components/map/LeafletMap';
 import { ReviewForm } from '@/components/reviews/ReviewForm';
 import { ReviewList } from '@/components/reviews/ReviewList';
+import { PlaceImageGallery } from '@/components/places/PlaceImageGallery';
 import { useFavorites } from '@/context/FavoritesContext';
 import { SeoMeta } from '@/components/seo/SeoMeta';
 
@@ -38,7 +39,6 @@ export const PlaceDetailPage: React.FC = () => {
 
   const [place, setPlace] = useState<PlaceWithDetails | null>(null);
   const [loading, setLoading] = useState(true);
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [reviews, setReviews] = useState<ReviewWithAuthor[]>([]);
   const [loadingReviews, setLoadingReviews] = useState(false);
 
@@ -57,7 +57,6 @@ export const PlaceDetailPage: React.FC = () => {
       fetchPlaceBySlug(slug, currentLang).then((data) => {
         if (isMounted) {
           setPlace(data);
-          setSelectedImage(data?.primaryImageUrl || null);
           setLoading(false);
           if (data) {
             loadReviews(data.id);
@@ -130,7 +129,7 @@ export const PlaceDetailPage: React.FC = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14 space-y-10">
+    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8 sm:py-10 space-y-8">
       <SeoMeta
         title={place.translation.title}
         description={place.translation.description?.substring(0, 160)}
@@ -223,50 +222,12 @@ export const PlaceDetailPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Photo Showcase Gallery */}
-      <div className="space-y-4">
-        <div className="relative aspect-[16/9] md:aspect-[21/9] bg-ocean-950 rounded-3xl overflow-hidden shadow-editorial border border-sand-200/90">
-          {selectedImage ? (
-            <img
-              src={selectedImage}
-              alt={place.translation.title}
-              className="w-full h-full object-cover animate-in fade-in duration-300"
-            />
-          ) : (
-            <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-ocean-950 via-ocean-900 to-lagoon-950 text-white p-6 text-center">
-              <Compass className="w-16 h-16 text-sand-300 mb-3 opacity-70" />
-              <span className="font-serif text-xl sm:text-2xl font-bold tracking-wide text-sand-100">
-                {place.translation.title}
-              </span>
-              <span className="text-xs text-sand-300/80 font-mono mt-1">
-                {place.category?.name || 'Dakhla'}
-              </span>
-            </div>
-          )}
-        </div>
-
-        {/* Thumbnails Row */}
-        {place.images.length > 1 && (
-          <div className="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-none">
-            {place.images.map((img) => {
-              const url = img.storage_path;
-              const isSelected = selectedImage === url;
-              return (
-                <button
-                  key={img.id}
-                  onClick={() => setSelectedImage(url)}
-                  className={`relative w-24 sm:w-28 h-16 sm:h-20 rounded-2xl overflow-hidden border-2 shrink-0 transition-all ${isSelected
-                      ? 'border-lagoon-600 scale-105 shadow-md'
-                      : 'border-transparent opacity-70 hover:opacity-100'
-                    }`}
-                >
-                  <img src={url} alt={img.caption || ''} className="w-full h-full object-cover" />
-                </button>
-              );
-            })}
-          </div>
-        )}
-      </div>
+      {/* Photo Showcase Gallery (Non-cropping, responsive, with navigation arrows & swipe) */}
+      <PlaceImageGallery
+        images={place.images}
+        title={place.translation.title}
+        categoryName={place.category?.name}
+      />
 
       {/* Layout Split: Editorial Content & Sticky Action Sidebar */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">

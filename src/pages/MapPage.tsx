@@ -33,7 +33,7 @@ export const MapPage: React.FC = () => {
   }, [activeCategory, currentLang]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 space-y-8">
+    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8 sm:py-10 space-y-6">
       <SeoMeta
         title={t('map.title', 'Interactive Map of Dakhla')}
         description={t('map.subtitle')}

@@ -3,8 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   Search,
-  Filter,
-  Sparkles,
+  SlidersHorizontal,
   X,
   Compass,
   RotateCcw,
@@ -24,6 +23,7 @@ export const ExplorePage: React.FC = () => {
   const [categories, setCategories] = useState<CategoryWithTranslation[]>([]);
   const [places, setPlaces] = useState<PlaceWithDetails[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
 
   // Filters from URL query params
   const activeCategory = searchParams.get('cat') || 'all';
@@ -87,187 +87,206 @@ export const ExplorePage: React.FC = () => {
   );
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14 space-y-10">
+    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8 sm:py-10 space-y-6 sm:space-y-8">
       <SeoMeta
         title={t('discovery.title', 'Explore Dakhla — Places, Hotels & Experiences')}
         description={t('discovery.subtitle')}
         canonicalPath="/explore"
       />
 
-      {/* Editorial Page Header */}
-      <div className="space-y-4 max-w-3xl">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sand-100 text-sand-800 text-xs font-mono font-bold uppercase tracking-wider">
-          <Compass className="w-3.5 h-3.5 text-sand-600" />
-          <span>{t('nav.explore')} • Catalogue Officiel</span>
+      {/* Header */}
+      <div className="space-y-1.5 max-w-2xl">
+        <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#176B87] uppercase tracking-wider">
+          <Compass className="w-3.5 h-3.5" />
+          <span>Dakhlin Guide</span>
         </div>
 
-        <h1 className="font-serif text-3xl sm:text-5xl font-bold text-ocean-950 tracking-tight leading-tight">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1F2933] tracking-tight">
           {t('discovery.title')}
         </h1>
 
-        <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-light">
+        <p className="text-xs sm:text-sm text-[#667580] leading-relaxed">
           {t('discovery.subtitle')}
         </p>
       </div>
 
-      {/* Filter & Search Bar Card */}
-      <div className="bg-white p-6 sm:p-7 rounded-3xl border border-sand-200/90 shadow-editorial space-y-5">
-
-        {/* Top Search Input */}
-        <div className="relative">
-          <Search className="absolute start-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => updateParam('q', e.target.value)}
-            placeholder={t('discovery.search')}
-            className="w-full ps-12 pe-11 py-3.5 rounded-2xl border border-sand-200/90 bg-sand-50/40 text-ocean-950 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-lagoon-500/20 focus:border-lagoon-500 transition-colors text-sm"
-          />
-          {searchQuery && (
-            <button
-              onClick={() => updateParam('q', null)}
-              className="absolute end-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-sand-100 transition-colors"
-              aria-label="Clear search"
-            >
-              <X className="w-4 h-4" />
-            </button>
-          )}
-        </div>
-
-        {/* Categories Horizontal Scroll Strip */}
-        <div className="space-y-2">
-          <div className="flex items-center gap-2 overflow-x-auto pb-1.5 scrollbar-none">
-            <button
-              onClick={() => updateParam('cat', 'all')}
-              className={`px-4 py-2.5 rounded-xl text-xs font-semibold tracking-wide uppercase whitespace-nowrap transition-all duration-150 ${activeCategory === 'all'
-                  ? 'bg-ocean-950 text-sand-100 shadow-xs'
-                  : 'bg-sand-50 border border-sand-200/80 text-slate-700 hover:bg-sand-100 hover:text-ocean-950'
-                }`}
-            >
-              {t('discovery.allCategories')}
-            </button>
-
-            {categories.map((cat) => {
-              const isSelected = activeCategory === cat.slug;
-              return (
-                <button
-                  key={cat.id}
-                  onClick={() => updateParam('cat', cat.slug)}
-                  className={`px-4 py-2.5 rounded-xl text-xs font-semibold tracking-wide whitespace-nowrap transition-all duration-150 ${isSelected
-                      ? 'bg-lagoon-600 text-white shadow-xs'
-                      : 'bg-sand-50 border border-sand-200/80 text-slate-700 hover:bg-sand-100 hover:text-ocean-950'
-                    }`}
-                >
-                  {cat.name}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Secondary Filter Line (Price Level & Project Status) */}
-        <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-sand-100 text-xs">
-
-          {/* Price Selector */}
-          <div className="flex items-center gap-2">
-            <span className="font-mono text-slate-500 uppercase tracking-wider text-[11px] font-semibold flex items-center gap-1.5">
-              <Filter className="w-3.5 h-3.5 text-slate-400" />
-              <span>{t('discovery.filterByPrice')}:</span>
-            </span>
-
-            <div className="flex items-center gap-1">
-              {[1, 2, 3, 4].map((p) => {
-                const isSelected = priceFilter === p;
-                return (
-                  <button
-                    key={p}
-                    onClick={() => updateParam('price', priceFilter === p ? null : String(p))}
-                    className={`px-3 py-1.5 rounded-lg font-mono font-bold border transition-colors ${isSelected
-                        ? 'bg-sand-600 text-white border-sand-600 shadow-xs'
-                        : 'bg-white border-sand-200/80 text-slate-600 hover:bg-sand-50'
-                      }`}
-                  >
-                    {'€'.repeat(p)}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Project Status Dropdown & Reset */}
-          <div className="flex items-center gap-3 ms-auto">
-            <div className="relative">
-              <select
-                value={projectStatusFilter}
-                onChange={(e) => updateParam('status', e.target.value)}
-                className="appearance-none ps-3 pe-8 py-2 rounded-xl border border-sand-200/90 bg-white text-slate-700 font-semibold focus:outline-none focus:ring-2 focus:ring-lagoon-500/20 text-xs"
-              >
-                <option value="all">{t('discovery.allProjects')}</option>
-                <option value="operational">{t('status.operational')}</option>
-                <option value="under_construction">{t('status.underConstruction')}</option>
-              </select>
-              <ChevronDown className="w-3.5 h-3.5 text-slate-400 absolute end-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-            </div>
-
-            {hasActiveFilters && (
+      {/* Compact Filters & Search Bar */}
+      <div className="space-y-3">
+        
+        {/* Search Input Row */}
+        <div className="flex items-center gap-2.5">
+          <div className="relative flex-1">
+            <Search className="absolute start-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#667580]" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => updateParam('q', e.target.value)}
+              placeholder={t('discovery.search')}
+              className="w-full ps-10 pe-9 py-2 rounded-full border border-[#E8E5DE] bg-white text-[#1F2933] placeholder:text-[#667580] focus:outline-none focus:ring-1 focus:ring-[#176B87] focus:border-[#176B87] transition-all text-xs sm:text-sm"
+            />
+            {searchQuery && (
               <button
-                onClick={handleResetFilters}
-                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-rose-600 hover:bg-rose-50 text-xs font-semibold transition-colors"
-                title={t('discovery.resetFilters')}
+                onClick={() => updateParam('q', null)}
+                className="absolute end-3 top-1/2 -translate-y-1/2 text-[#667580] hover:text-[#1F2933] p-1 rounded-full transition-colors"
+                aria-label="Clear search"
               >
-                <RotateCcw className="w-3.5 h-3.5" />
-                <span>{t('discovery.resetFilters')}</span>
+                <X className="w-3.5 h-3.5" />
               </button>
             )}
           </div>
 
+          {/* Toggle Advanced Filters Button */}
+          <button
+            type="button"
+            onClick={() => setShowAdvancedFilters(!showAdvancedFilters)}
+            className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full border text-xs font-medium transition-colors shrink-0 ${
+              showAdvancedFilters || priceFilter !== undefined || projectStatusFilter !== 'all'
+                ? 'bg-[#176B87] text-white border-[#176B87]'
+                : 'bg-white border-[#E8E5DE] text-[#1F2933] hover:bg-[#FCFBF8]'
+            }`}
+          >
+            <SlidersHorizontal className="w-3.5 h-3.5" />
+            <span>Filtres</span>
+            {(priceFilter !== undefined || projectStatusFilter !== 'all') && (
+              <span className="w-1.5 h-1.5 rounded-full bg-[#D8B67A]" />
+            )}
+          </button>
         </div>
 
+        {/* Compact Horizontal Category Filter Strip */}
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
+          <button
+            onClick={() => updateParam('cat', 'all')}
+            className={`px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors ${
+              activeCategory === 'all'
+                ? 'bg-[#176B87] text-white'
+                : 'bg-white border border-[#E8E5DE] text-[#667580] hover:text-[#1F2933] hover:bg-[#FCFBF8]'
+            }`}
+          >
+            {t('discovery.allCategories')}
+          </button>
+
+          {categories.map((cat) => {
+            const isSelected = activeCategory === cat.slug;
+            return (
+              <button
+                key={cat.id}
+                onClick={() => updateParam('cat', cat.slug)}
+                className={`px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors ${
+                  isSelected
+                    ? 'bg-[#176B87] text-white'
+                    : 'bg-white border border-[#E8E5DE] text-[#667580] hover:text-[#1F2933] hover:bg-[#FCFBF8]'
+                }`}
+              >
+                {cat.name}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Collapsible Advanced Filters Drawer */}
+        {showAdvancedFilters && (
+          <div className="p-3.5 rounded-2xl bg-white border border-[#E8E5DE] flex flex-wrap items-center justify-between gap-3 text-xs animate-in slide-in-from-top-1 duration-150">
+            
+            {/* Price Level */}
+            <div className="flex items-center gap-2">
+              <span className="text-[#667580] font-medium">Prix:</span>
+              <div className="flex items-center gap-1">
+                {[1, 2, 3, 4].map((p) => {
+                  const isSelected = priceFilter === p;
+                  return (
+                    <button
+                      key={p}
+                      onClick={() => updateParam('price', priceFilter === p ? null : String(p))}
+                      className={`px-2.5 py-1 rounded-lg border text-xs font-medium transition-colors ${
+                        isSelected
+                          ? 'bg-[#176B87] text-white border-[#176B87]'
+                          : 'bg-white border-[#E8E5DE] text-[#1F2933] hover:bg-[#FCFBF8]'
+                      }`}
+                    >
+                      {'€'.repeat(p)}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Status & Reset */}
+            <div className="flex items-center gap-2.5 ms-auto">
+              <div className="relative">
+                <select
+                  value={projectStatusFilter}
+                  onChange={(e) => updateParam('status', e.target.value)}
+                  className="appearance-none ps-3 pe-7 py-1.5 rounded-xl border border-[#E8E5DE] bg-white text-[#1F2933] font-medium focus:outline-none focus:ring-1 focus:ring-[#176B87] text-xs"
+                >
+                  <option value="all">{t('discovery.allProjects')}</option>
+                  <option value="operational">{t('status.operational')}</option>
+                  <option value="under_construction">{t('status.underConstruction')}</option>
+                </select>
+                <ChevronDown className="w-3.5 h-3.5 text-[#667580] absolute end-2 top-1/2 -translate-y-1/2 pointer-events-none" />
+              </div>
+
+              {hasActiveFilters && (
+                <button
+                  onClick={handleResetFilters}
+                  className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-rose-600 hover:bg-rose-50 text-xs font-medium transition-colors"
+                  title={t('discovery.resetFilters')}
+                >
+                  <RotateCcw className="w-3 h-3" />
+                  <span>Réinitialiser</span>
+                </button>
+              )}
+            </div>
+
+          </div>
+        )}
+
       </div>
 
-      {/* Results Count Header */}
-      <div className="flex items-center justify-between text-xs sm:text-sm text-slate-600 px-1">
-        <span className="font-mono font-bold text-ocean-950 uppercase tracking-wider">
-          {t('discovery.placesCount', { count: places.length })}
-        </span>
+      {/* Results Count Line */}
+      <div className="text-xs text-[#667580] font-medium">
+        {t('discovery.placesCount', { count: places.length })}
       </div>
 
-      {/* Places Grid or Rich Empty State */}
+      {/* Responsive Place Cards Grid (Auto-balances 1, 2, or 3+ cards without awkward gaps) */}
       {loading ? (
-        <div className="py-24 text-center space-y-4">
-          <div className="w-12 h-12 border-4 border-lagoon-600 border-t-transparent rounded-full animate-spin mx-auto" />
-          <p className="text-xs sm:text-sm text-slate-500 font-mono uppercase tracking-widest">{t('common.loading')}</p>
+        <div className="py-20 text-center space-y-3">
+          <div className="w-7 h-7 border-2 border-[#176B87] border-t-transparent rounded-full animate-spin mx-auto" />
+          <p className="text-xs text-[#667580]">{t('common.loading')}</p>
         </div>
       ) : places.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {places.map((place) => (
-            <PlaceCard key={place.id} place={place} />
-          ))}
-        </div>
+        places.length === 1 ? (
+          <div className="max-w-[360px] sm:max-w-[400px]">
+            <PlaceCard place={places[0]} />
+          </div>
+        ) : places.length === 2 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 max-w-2xl gap-5 sm:gap-6">
+            {places.map((place) => (
+              <PlaceCard key={place.id} place={place} />
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6">
+            {places.map((place) => (
+              <PlaceCard key={place.id} place={place} />
+            ))}
+          </div>
+        )
       ) : (
-        <div className="py-20 px-8 text-center bg-white rounded-3xl border border-sand-200/90 shadow-editorial max-w-xl mx-auto space-y-5">
-          <div className="w-16 h-16 rounded-3xl bg-sand-100 text-sand-700 flex items-center justify-center mx-auto shadow-sm">
-            <Sparkles className="w-8 h-8 text-sand-600" />
-          </div>
-
-          <div className="space-y-2">
-            <h3 className="font-serif text-2xl font-bold text-ocean-950">
-              {t('discovery.noPlacesFound')}
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-light">
-              {t('discovery.noPlacesDescription')}
-            </p>
-          </div>
-
-          <div className="pt-2">
-            <button
-              onClick={handleResetFilters}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-ocean-950 hover:bg-ocean-900 text-sand-100 font-semibold text-xs uppercase tracking-wider shadow-sm transition-all"
-            >
-              <RotateCcw className="w-3.5 h-3.5 text-sand-300" />
-              <span>{t('discovery.resetFilters')}</span>
-            </button>
-          </div>
+        <div className="py-14 px-6 text-center bg-white rounded-2xl border border-[#E8E5DE] max-w-md mx-auto space-y-3">
+          <h3 className="text-base font-bold text-[#1F2933]">
+            {t('discovery.noPlacesFound')}
+          </h3>
+          <p className="text-xs text-[#667580] leading-relaxed">
+            {t('discovery.noPlacesDescription')}
+          </p>
+          <button
+            onClick={handleResetFilters}
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#176B87] text-white font-medium text-xs transition-colors hover:bg-[#13586F]"
+          >
+            <RotateCcw className="w-3.5 h-3.5" />
+            <span>{t('discovery.resetFilters')}</span>
+          </button>
         </div>
       )}
 

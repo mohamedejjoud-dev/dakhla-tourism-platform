@@ -1,0 +1,315 @@
+{
+  "business": {
+    "name": "QUAD BUGGY 4X4 - DAKHLA RIDE ADVENTURES",
+    "website": "https://dakhlarideadventures.com/",
+    "phone": "+212661118174",
+    "phoneAgency": "+212662336571",
+    "whatsapp": "+212661118174",
+    "email": "dakhlarideadventures@gmail.com",
+    "address": "PK 28, Zone Balnéaire Trouk, opposite Dakhla Golf (lagoon road), Dakhla 73000, Morocco",
+    "lat": 23.9349,
+    "lng": -15.7563,
+    "coordsNote": "Approximate: centre of the Google Map embedded on their website, not an exact pin",
+    "googleMaps": "https://www.google.com/maps/search/?api=1&query=DAKHLA+RIDE+ADVENTURES+Dakhla",
+    "hours": "Daily 9:00-20:00 (per Google listing, unconfirmed)",
+    "included": "Hotel pick-up and drop-off (round trip) on all 4 activities"
+  },
+  "activities": [
+    {
+      "slug": "horse-ride",
+      "title": "Dakhla Horse Ride Experience",
+      "source": "https://dakhlarideadventures.com/cheval-horse-equitation/",
+      "images": [
+        "/activities/horse-ride/cover.webp",
+        "/activities/horse-ride/photo-01.webp",
+        "/activities/horse-ride/photo-02.webp",
+        "/activities/horse-ride/photo-03.webp"
+      ],
+      "options": [
+        {
+          "name": "Lagoon or ocean ride",
+          "duration": "1h",
+          "priceMAD": 300,
+          "priceEUR": 30,
+          "level": "Beginners",
+          "notes": "Walk-pace ride around Dakhla bay; sunset possible"
+        },
+        {
+          "name": "Desert & ocean trek",
+          "duration": "1h30",
+          "priceMAD": 400,
+          "priceEUR": 40,
+          "level": "Intermediate",
+          "notes": "Between desert dunes and the Atlantic; sunset possible"
+        },
+        {
+          "name": "Desert & lagoon / desert & ocean",
+          "duration": "2h",
+          "priceMAD": 500,
+          "priceEUR": 50,
+          "level": "Experienced",
+          "notes": "Dragon Island or Pointe d'Or beach; walk, trot and gallop"
+        }
+      ],
+      "includes": [
+        "Hotel transfer (round trip)",
+        "Helmet and vest"
+      ],
+      "requirements": [
+        "Closed shoes required"
+      ],
+      "photoSource": "Provided by the business owner (dakhla-activities.zip)"
+    },
+    {
+      "slug": "quad-white-dune",
+      "title": "Quad Biking Adventure to the White Dune in Dakhla",
+      "source": "https://dakhlarideadventures.com/excursion-en-quad-a-dakhla/",
+      "images": [
+        "/activities/quad-white-dune/cover.webp",
+        "/activities/quad-white-dune/photo-01.webp",
+        "/activities/quad-white-dune/photo-02.webp",
+        "/activities/quad-white-dune/photo-03.webp"
+      ],
+      "options": [
+        {
+          "name": "The White Dune",
+          "duration": "2h",
+          "priceMAD": 800,
+          "priceEUR": 80,
+          "priceDuoMAD": 1000,
+          "priceDuoEUR": 100,
+          "notes": "Dune riding session then the White Dune (Dune Blanche); for thrill seekers"
+        },
+        {
+          "name": "Desert & ocean ride",
+          "duration": "1h",
+          "priceMAD": 400,
+          "priceEUR": 40,
+          "priceDuoMAD": 500,
+          "priceDuoEUR": 50,
+          "notes": "Pointe d'Or beach and desert"
+        },
+        {
+          "name": "Sunset ride",
+          "duration": "1h45",
+          "priceMAD": 800,
+          "priceEUR": 80,
+          "priceDuoMAD": 1000,
+          "priceDuoEUR": 100,
+          "notes": "On reservation; +30 min sandboard 150 MAD / 15 EUR per person"
+        }
+      ],
+      "includes": [
+        "Guided, 300cc quad",
+        "Helmet",
+        "Hotel-agency-hotel transfer (also for kite camps at the end of the lagoon)"
+      ],
+      "priceUnit": "per quad (solo / duo)",
+      "photoSource": "Provided by the business owner (dakhla-activities.zip)"
+    },
+    {
+      "slug": "vintage-safari",
+      "title": "Safari Land Rover Vintage White Dunes Exploration and Sandboarding",
+      "source": "https://dakhlarideadventures.com/vintage-safari-land-rover-4x4/",
+      "images": [
+        "/activities/vintage-safari/cover.webp",
+        "/activities/vintage-safari/photo-01.webp",
+        "/activities/vintage-safari/photo-02.webp",
+        "/activities/vintage-safari/photo-03.webp",
+        "/activities/vintage-safari/photo-04.webp"
+      ],
+      "options": [
+        {
+          "name": "White Dune safari",
+          "duration": "3h",
+          "priceMAD": 400,
+          "priceEUR": 40,
+          "notes": "2h Land Rover safari, 30 min stop at the White Dune, Asmaa spring, sandboarding"
+        },
+        {
+          "name": "Desert safari + sandboard",
+          "duration": "2h",
+          "priceMAD": 300,
+          "priceEUR": 30,
+          "notes": "1h30 Land Rover safari + 30 min sandboard"
+        },
+        {
+          "name": "Sunset safari",
+          "duration": "2h",
+          "priceMAD": 350,
+          "priceEUR": 35,
+          "notes": "Desert, dunes and ocean at sunset + sandboard"
+        }
+      ],
+      "includes": [
+        "Restored 1960s-80s Land Rover Santana/Defender",
+        "Sandboard session",
+        "Free chèche (nomad scarf)",
+        "Soda + water",
+        "Hotel transfer (round trip)"
+      ],
+      "priceUnit": "per adult; children under 12: -50%; minimum 2 people",
+      "photoSource": "Provided by the business owner (dakhla-activities.zip)"
+    },
+    {
+      "slug": "camel-ride",
+      "title": "Dakhla Camel Ride Experience",
+      "source": "https://dakhlarideadventures.com/camel-chameau-dromadaire/",
+      "images": [
+        "/activities/camel-ride/cover.webp",
+        "/activities/camel-ride/photo-01.webp",
+        "/activities/camel-ride/photo-02.webp",
+        "/activities/camel-ride/photo-03.webp"
+      ],
+      "options": [
+        {
+          "name": "Lagoon side",
+          "duration": "1h (+30 min tea)",
+          "priceMAD": 250,
+          "priceEUR": 25,
+          "childMAD": 100,
+          "childEUR": 10,
+          "notes": "1h dromedary ride + tea under a traditional tent"
+        },
+        {
+          "name": "Desert & ocean side",
+          "duration": "1h30 (+30 min tea)",
+          "priceMAD": 300,
+          "priceEUR": 30,
+          "childMAD": 150,
+          "childEUR": 15,
+          "notes": "1h30 ride + tea break"
+        },
+        {
+          "name": "Ocean ride at sunset",
+          "duration": "2h",
+          "priceMAD": 350,
+          "priceEUR": 35,
+          "childMAD": 200,
+          "childEUR": 20,
+          "notes": "2h ride"
+        }
+      ],
+      "includes": [
+        "Hotel transfer (round trip)",
+        "Free chèche (nomad scarf)",
+        "Traditional outfits provided",
+        "Tea under traditional tent"
+      ],
+      "priceUnit": "per adult / child under 12; 1-2 people per camel",
+      "photoSource": "Provided by the business owner (dakhla-activities.zip)"
+    },
+    {
+      "slug": "buggy-white-dune",
+      "title": "Buggy Adventure to the White Dune in Dakhla",
+      "source": "https://dakhlarideadventures.com/excursions-en-buggy-2025/",
+      "images": [
+        "/activities/buggy-white-dune/cover.webp",
+        "/activities/buggy-white-dune/photo-01.webp",
+        "/activities/buggy-white-dune/photo-02.webp",
+        "/activities/buggy-white-dune/photo-03.webp",
+        "/activities/buggy-white-dune/photo-04.webp"
+      ],
+      "options": [
+        {
+          "name": "White Dune, desert & ocean",
+          "duration": "2h",
+          "priceMAD": 2200,
+          "priceEUR": 220,
+          "price4MAD": 2800,
+          "price4EUR": 280,
+          "notes": "Visit the White Dune (Dune Blanche), desert, finish on the ocean side"
+        },
+        {
+          "name": "Speed Spot & desert ride",
+          "duration": "1h",
+          "priceMAD": 1200,
+          "priceEUR": 120,
+          "price4MAD": 1800,
+          "price4EUR": 180,
+          "notes": "Desert and the Speed Spot with a view of Dragon Island"
+        },
+        {
+          "name": "Sunset: Speed Spot, desert & ocean",
+          "duration": "1h45",
+          "priceMAD": null,
+          "priceEUR": null,
+          "notes": "On reservation; price not published, ask on WhatsApp. +30 min sandboard 150 MAD / 15 EUR per person"
+        }
+      ],
+      "includes": [
+        "Can-Am Maverick 1000cc buggy",
+        "Guide",
+        "Helmets",
+        "Hotel-agency-hotel transfer (also for kite camps at the end of the lagoon)"
+      ],
+      "priceUnit": "per buggy (2-seat / 4-seat)",
+      "photoSource": "Business's official website (no reuse licence published; same business - confirm with owner)",
+      "imageSources": {
+        "buggy-white-dune/cover.webp": "https://dakhlarideadventures.com/wp-content/uploads/2025/06/IMG_8447-scaled.jpeg",
+        "buggy-white-dune/photo-01.webp": "https://dakhlarideadventures.com/wp-content/uploads/2025/06/IMG_8448-scaled.jpeg",
+        "buggy-white-dune/photo-02.webp": "https://dakhlarideadventures.com/wp-content/uploads/2025/06/IMG_8433-scaled.jpeg",
+        "buggy-white-dune/photo-03.webp": "https://dakhlarideadventures.com/wp-content/uploads/2026/02/DSC08258-scaled.jpg",
+        "buggy-white-dune/photo-04.webp": "https://dakhlarideadventures.com/wp-content/uploads/2025/06/10088C17-FE32-44BD-8CB2-9CB8782C9066.jpeg"
+      }
+    },
+    {
+      "slug": "e-bike-tour",
+      "title": "Dakhla E-Bike Tour: Lagoon & Atlantic Ride",
+      "source": "https://dakhlarideadventures.com/e-bike/",
+      "images": [
+        "/activities/e-bike-tour/cover.webp",
+        "/activities/e-bike-tour/photo-01.webp",
+        "/activities/e-bike-tour/photo-02.webp",
+        "/activities/e-bike-tour/photo-03.webp",
+        "/activities/e-bike-tour/photo-04.webp"
+      ],
+      "options": [
+        {
+          "name": "Atlantic ride",
+          "duration": "1h",
+          "priceMAD": 250,
+          "priceEUR": 25,
+          "notes": ""
+        },
+        {
+          "name": "Atlantic ride at sunset",
+          "duration": "1h",
+          "priceMAD": 300,
+          "priceEUR": 30,
+          "notes": ""
+        },
+        {
+          "name": "Lagoon & Atlantic ride",
+          "duration": "1h30",
+          "priceMAD": 350,
+          "priceEUR": 35,
+          "notes": ""
+        },
+        {
+          "name": "Lagoon & Atlantic ride at sunset",
+          "duration": "1h30",
+          "priceMAD": 400,
+          "priceEUR": 40,
+          "notes": ""
+        }
+      ],
+      "includes": [
+        "Electric bike (500 W motor, 50 km range)",
+        "Hotel transfer (round trip)"
+      ],
+      "priceUnit": "per person",
+      "requirements": [
+        "Bring long trousers, closed shoes and sun protection"
+      ],
+      "photoSource": "Business's official website (no reuse licence published; same business - confirm with owner)",
+      "imageSources": {
+        "e-bike-tour/cover.webp": "https://dakhlarideadventures.com/wp-content/uploads/2025/03/image_50400257-1-scaled.jpg",
+        "e-bike-tour/photo-01.webp": "https://dakhlarideadventures.com/wp-content/uploads/2025/03/IMG_5343-scaled.jpg",
+        "e-bike-tour/photo-02.webp": "https://dakhlarideadventures.com/wp-content/uploads/2025/03/image_50433537-1-scaled.jpg",
+        "e-bike-tour/photo-03.webp": "https://dakhlarideadventures.com/wp-content/uploads/2025/03/DSC00500-1-scaled.jpg",
+        "e-bike-tour/photo-04.webp": "https://dakhlarideadventures.com/wp-content/uploads/2025/03/IMG_5337-scaled.jpg"
+      }
+    }
+  ]
+}

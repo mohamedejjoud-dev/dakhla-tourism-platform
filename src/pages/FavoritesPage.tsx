@@ -57,50 +57,62 @@ export const FavoritesPage: React.FC = () => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14 space-y-10">
+    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8 sm:py-10 space-y-6 sm:space-y-8">
       
       {/* Editorial Header */}
-      <div className="space-y-3 max-w-2xl">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sand-100 text-rose-700 text-xs font-mono font-bold uppercase tracking-wider">
+      <div className="space-y-1.5 max-w-2xl">
+        <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#F3E8D2]/50 text-rose-700 text-xs font-semibold tracking-wider uppercase">
           <Heart className="w-3.5 h-3.5 fill-rose-600" />
           <span>Carnet de Voyage Privé</span>
         </div>
-        <h1 className="font-serif text-3xl sm:text-5xl font-bold text-ocean-950 tracking-tight leading-tight">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1F2933] tracking-tight">
           {t('favorites.title')}
         </h1>
-        <p className="text-sm sm:text-base text-slate-600 font-light leading-relaxed">
+        <p className="text-xs sm:text-sm text-[#667580] leading-relaxed">
           {t('favorites.subtitle')}
         </p>
       </div>
 
       {loading ? (
-        <div className="py-24 text-center space-y-3">
-          <div className="w-10 h-10 border-4 border-lagoon-600 border-t-transparent rounded-full animate-spin mx-auto" />
-          <p className="text-xs text-slate-400 font-mono uppercase tracking-widest">{t('common.loading')}</p>
+        <div className="py-20 text-center space-y-3">
+          <div className="w-8 h-8 border-2 border-[#176B87] border-t-transparent rounded-full animate-spin mx-auto" />
+          <p className="text-xs text-[#667580]">{t('common.loading')}</p>
         </div>
       ) : places.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {places.map((place) => (
-            <PlaceCard key={place.id} place={place} />
-          ))}
-        </div>
-      ) : (
-        <div className="py-20 px-8 text-center bg-white rounded-3xl border border-sand-200/90 shadow-editorial max-w-lg mx-auto space-y-5">
-          <div className="w-16 h-16 rounded-3xl bg-sand-100 text-sand-500 flex items-center justify-center mx-auto">
-            <Heart className="w-8 h-8 text-sand-400" />
+        places.length === 1 ? (
+          <div className="max-w-[360px] sm:max-w-[400px]">
+            <PlaceCard place={places[0]} />
           </div>
-          <div className="space-y-2">
-            <h3 className="font-serif text-2xl font-bold text-ocean-950">{t('favorites.empty')}</h3>
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-light">
+        ) : places.length === 2 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 max-w-2xl gap-5 sm:gap-6">
+            {places.map((place) => (
+              <PlaceCard key={place.id} place={place} />
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6">
+            {places.map((place) => (
+              <PlaceCard key={place.id} place={place} />
+            ))}
+          </div>
+        )
+      ) : (
+        <div className="py-14 px-6 text-center bg-white rounded-2xl border border-[#E8E5DE] max-w-md mx-auto space-y-3">
+          <div className="w-12 h-12 rounded-2xl bg-[#F3E8D2]/40 text-rose-500 flex items-center justify-center mx-auto">
+            <Heart className="w-6 h-6 text-rose-500" />
+          </div>
+          <div className="space-y-1">
+            <h3 className="text-base font-bold text-[#1F2933]">{t('favorites.empty')}</h3>
+            <p className="text-xs text-[#667580] leading-relaxed">
               {t('favorites.emptyDescription')}
             </p>
           </div>
           <div className="pt-2">
             <Link
               to="/explore"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-ocean-950 hover:bg-ocean-900 text-sand-100 font-semibold text-xs uppercase tracking-wider shadow-sm transition-all"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#176B87] hover:bg-[#13586F] text-white font-medium text-xs transition-colors"
             >
-              <Compass className="w-4 h-4 text-lagoon-400" />
+              <Compass className="w-3.5 h-3.5" />
               <span>{t('favorites.exploreButton')}</span>
             </Link>
           </div>

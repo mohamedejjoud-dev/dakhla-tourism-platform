@@ -61,17 +61,17 @@ export const AdminLayout: React.FC = () => {
         <div>
           {/* Admin Header / Logo */}
           <div className="p-5 border-b border-sand-200 dark:border-stone-700 flex items-center justify-between">
-            <Link to="/admin" className="flex items-center gap-3">
+            <Link to="/admin" className="flex items-center gap-2.5">
               <img 
-                src="/images/elhaj-avatar.jpg" 
+                src="/images/logo-symbol.svg" 
                 alt="Dakhlin Admin" 
-                className="w-9 h-9 rounded-full object-cover border border-[#004F32] shadow-xs" 
+                className="w-8 h-8 object-contain" 
               />
               <div>
-                <span className="font-extrabold text-lg tracking-tight text-slate-900 dark:text-sand-100">
-                  Dakhlin<span className="text-[#00AA6C]">.</span>
+                <span className="font-extrabold text-lg tracking-tight text-[#0E6E77] dark:text-sand-100">
+                  Dakhlin
                 </span>
-                <span className="block text-[10px] uppercase font-bold tracking-widest text-[#004F32] dark:text-ocean-400">
+                <span className="block text-[10px] uppercase font-bold tracking-widest text-[#0E6E77] dark:text-ocean-400">
                   {t('admin.cms_badge', 'Admin CMS')}
                 </span>
               </div>
