@@ -37,17 +37,19 @@ export const FavoritesPage: React.FC = () => {
 
   if (!user) {
     return (
-      <div className="max-w-md mx-auto px-4 py-20 text-center space-y-4">
-        <div className="w-16 h-16 rounded-full bg-rose-50 text-rose-600 flex items-center justify-center mx-auto">
-          <Heart className="w-8 h-8 fill-rose-600" />
+      <div className="max-w-lg mx-auto px-4 py-24 text-center space-y-6">
+        <div className="w-16 h-16 rounded-3xl bg-sand-100 text-rose-500 flex items-center justify-center mx-auto shadow-sm">
+          <Heart className="w-8 h-8 fill-rose-500" />
         </div>
-        <h2 className="text-2xl font-extrabold text-ocean-900">{t('favorites.title')}</h2>
-        <p className="text-sm text-slate-600">{t('auth.loginRequired')}</p>
+        <div className="space-y-2">
+          <h2 className="font-serif text-3xl font-bold text-ocean-950">{t('favorites.title')}</h2>
+          <p className="text-sm text-slate-600 leading-relaxed font-light">{t('auth.loginRequired')}</p>
+        </div>
         <button
           onClick={openAuthModal}
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-lagoon-600 text-white font-bold text-sm shadow-md"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-ocean-950 hover:bg-ocean-900 text-sand-100 font-semibold text-xs uppercase tracking-wider shadow-sm transition-all"
         >
-          <LogIn className="w-4 h-4" />
+          <LogIn className="w-4 h-4 text-lagoon-400" />
           <span>{t('auth.signIn')}</span>
         </button>
       </div>
@@ -55,45 +57,50 @@ export const FavoritesPage: React.FC = () => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14 space-y-10">
       
-      {/* Header */}
-      <div className="space-y-2">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 text-rose-700 text-xs font-bold">
+      {/* Editorial Header */}
+      <div className="space-y-3 max-w-2xl">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sand-100 text-rose-700 text-xs font-mono font-bold uppercase tracking-wider">
           <Heart className="w-3.5 h-3.5 fill-rose-600" />
-          <span>{t('favorites.title')}</span>
+          <span>Carnet de Voyage Privé</span>
         </div>
-        <h1 className="text-3xl font-extrabold text-ocean-900 tracking-tight">
+        <h1 className="font-serif text-3xl sm:text-5xl font-bold text-ocean-950 tracking-tight leading-tight">
           {t('favorites.title')}
         </h1>
-        <p className="text-sm text-slate-600 max-w-2xl">
+        <p className="text-sm sm:text-base text-slate-600 font-light leading-relaxed">
           {t('favorites.subtitle')}
         </p>
       </div>
 
       {loading ? (
-        <div className="py-20 text-center">
-          <div className="w-10 h-10 border-4 border-lagoon-600 border-t-transparent rounded-full animate-spin mx-auto"></div>
+        <div className="py-24 text-center space-y-3">
+          <div className="w-10 h-10 border-4 border-lagoon-600 border-t-transparent rounded-full animate-spin mx-auto" />
+          <p className="text-xs text-slate-400 font-mono uppercase tracking-widest">{t('common.loading')}</p>
         </div>
       ) : places.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {places.map((place) => (
             <PlaceCard key={place.id} place={place} />
           ))}
         </div>
       ) : (
-        <div className="py-16 px-6 text-center bg-white rounded-2xl border border-sand-200/90 shadow-sm max-w-md mx-auto space-y-4">
-          <Heart className="w-12 h-12 text-sand-300 mx-auto" />
-          <h3 className="text-lg font-bold text-ocean-900">{t('favorites.empty')}</h3>
-          <p className="text-xs text-slate-500 leading-relaxed">
-            {t('favorites.emptyDescription')}
-          </p>
+        <div className="py-20 px-8 text-center bg-white rounded-3xl border border-sand-200/90 shadow-editorial max-w-lg mx-auto space-y-5">
+          <div className="w-16 h-16 rounded-3xl bg-sand-100 text-sand-500 flex items-center justify-center mx-auto">
+            <Heart className="w-8 h-8 text-sand-400" />
+          </div>
+          <div className="space-y-2">
+            <h3 className="font-serif text-2xl font-bold text-ocean-950">{t('favorites.empty')}</h3>
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-light">
+              {t('favorites.emptyDescription')}
+            </p>
+          </div>
           <div className="pt-2">
             <Link
               to="/explore"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-lagoon-600 text-white font-bold text-xs shadow-md"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-ocean-950 hover:bg-ocean-900 text-sand-100 font-semibold text-xs uppercase tracking-wider shadow-sm transition-all"
             >
-              <Compass className="w-4 h-4" />
+              <Compass className="w-4 h-4 text-lagoon-400" />
               <span>{t('favorites.exploreButton')}</span>
             </Link>
           </div>

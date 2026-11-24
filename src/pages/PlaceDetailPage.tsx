@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { 
-  ArrowLeft, 
-  MapPin, 
-  Phone, 
-  Globe, 
-  Instagram, 
-  Star, 
-  Clock, 
-  Compass, 
-  MessageSquare, 
-  Lightbulb, 
+import {
+  ArrowLeft,
+  MapPin,
+  Phone,
+  Globe,
+  Instagram,
+  Star,
+  Clock,
+  Compass,
+  MessageSquare,
+  Lightbulb,
   ExternalLink,
   ShieldCheck,
   Calendar,
   AlertTriangle,
-  Heart
+  Heart,
+  Navigation
 } from 'lucide-react';
 import { fetchPlaceBySlug } from '@/services/tourismService';
 import { fetchPlaceReviews, ReviewWithAuthor } from '@/services/reviewsService';
@@ -71,20 +72,26 @@ export const PlaceDetailPage: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-[60vh] flex items-center justify-center">
-        <div className="w-10 h-10 border-4 border-lagoon-600 border-t-transparent rounded-full animate-spin"></div>
+      <div className="min-h-[70vh] flex flex-col items-center justify-center space-y-4">
+        <div className="w-12 h-12 border-4 border-lagoon-600 border-t-transparent rounded-full animate-spin"></div>
+        <p className="text-xs font-mono uppercase tracking-widest text-slate-400">{t('common.loading')}</p>
       </div>
     );
   }
 
   if (!place) {
     return (
-      <div className="max-w-3xl mx-auto px-4 py-20 text-center space-y-4">
-        <h2 className="text-2xl font-bold text-ocean-900">{t('common.noResults')}</h2>
-        <p className="text-slate-600">{t('discovery.noPlacesDescription')}</p>
+      <div className="max-w-2xl mx-auto px-4 py-24 text-center space-y-6">
+        <div className="w-16 h-16 rounded-3xl bg-sand-100 text-sand-700 flex items-center justify-center mx-auto">
+          <Compass className="w-8 h-8 text-sand-600" />
+        </div>
+        <div className="space-y-2">
+          <h2 className="font-serif text-3xl font-bold text-ocean-950">{t('common.noResults')}</h2>
+          <p className="text-sm text-slate-600 max-w-md mx-auto leading-relaxed">{t('discovery.noPlacesDescription')}</p>
+        </div>
         <Link
           to="/explore"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-lagoon-600 text-white font-bold text-sm"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-ocean-950 hover:bg-ocean-900 text-sand-100 font-semibold text-xs tracking-wider uppercase shadow-xs transition-colors"
         >
           <ArrowLeft className={`w-4 h-4 ${isRtl ? 'rotate-180' : ''}`} />
           <span>{t('details.backToPlaces')}</span>
@@ -123,7 +130,7 @@ export const PlaceDetailPage: React.FC = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14 space-y-10">
       <SeoMeta
         title={place.translation.title}
         description={place.translation.description?.substring(0, 160)}
@@ -132,21 +139,21 @@ export const PlaceDetailPage: React.FC = () => {
         ogType="place"
         structuredData={placeSchema}
       />
-      
-      {/* Top Breadcrumb Navigation */}
-      <div className="flex items-center justify-between">
+
+      {/* Top Header / Breadcrumb & Action Row */}
+      <div className="flex items-center justify-between border-b border-sand-200/80 pb-4">
         <Link
           to="/explore"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-ocean-900 transition-colors"
+          className="inline-flex items-center gap-2 text-xs font-semibold tracking-wider uppercase text-slate-600 hover:text-ocean-950 transition-colors"
         >
           <ArrowLeft className={`w-4 h-4 ${isRtl ? 'rotate-180' : ''}`} />
           <span>{t('details.backToPlaces')}</span>
         </Link>
 
-        {/* Right Header Actions: Fallback Badge & Favorite Button */}
-        <div className="flex items-center gap-2">
+        {/* Right Header Badges & Favorite */}
+        <div className="flex items-center gap-3">
           {place.translation.isFallback && (
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-amber-50 border border-amber-200 text-amber-800">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-amber-50 border border-amber-200 text-amber-800">
               <AlertTriangle className="w-3.5 h-3.5 text-amber-600" />
               <span>{t('discovery.fallbackBadge', { lang: place.translation.fallbackLang?.toUpperCase() })}</span>
             </span>
@@ -155,9 +162,10 @@ export const PlaceDetailPage: React.FC = () => {
           <button
             type="button"
             onClick={() => toggleFavorite(place.id)}
-            className={`p-2.5 rounded-full border transition-transform hover:scale-110 shadow-sm ${
-              isFavorite(place.id) ? 'bg-rose-500 text-white border-rose-500' : 'bg-white border-sand-200 text-slate-700 hover:text-rose-500'
-            }`}
+            className={`p-2.5 rounded-2xl border transition-all duration-200 hover:scale-105 shadow-xs ${isFavorite(place.id)
+                ? 'bg-rose-500 text-white border-rose-500 shadow-rose-500/25'
+                : 'bg-white border-sand-200 text-slate-700 hover:text-rose-500'
+              }`}
             aria-label={isFavorite(place.id) ? t('favorites.removed') : t('favorites.added')}
           >
             <Heart className={`w-5 h-5 ${isFavorite(place.id) ? 'fill-white' : ''}`} />
@@ -166,33 +174,33 @@ export const PlaceDetailPage: React.FC = () => {
       </div>
 
       {/* Main Place Header */}
-      <div className="space-y-4">
+      <div className="space-y-4 max-w-4xl">
         <div className="flex flex-wrap items-center gap-2.5">
           {place.category && (
-            <span className="px-3 py-1 rounded-full text-xs font-bold bg-lagoon-50 text-lagoon-700">
+            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-ocean-950 text-sand-100 font-mono">
               {place.category.name}
             </span>
           )}
 
           {isUnderConstruction && (
-            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-amber-500 text-white shadow-sm">
-              <Clock className="w-3 h-3" />
+            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-amber-500 text-white shadow-xs">
+              <Clock className="w-3.5 h-3.5" />
               <span>{t('status.underConstruction')}</span>
             </span>
           )}
 
-          <span className="font-extrabold text-sand-700 text-sm tracking-wider">
+          <span className="font-mono font-bold text-sand-700 text-xs tracking-widest px-2.5 py-1 rounded-full bg-sand-100">
             {priceSymbols}
           </span>
         </div>
 
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-ocean-900 tracking-tight">
+        <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold text-ocean-950 tracking-tight leading-tight">
           {place.translation.title}
         </h1>
 
-        {/* Rating & Address Summary */}
-        <div className="flex flex-wrap items-center gap-6 text-sm text-slate-600">
-          <div className="flex items-center gap-1.5 font-bold text-ocean-900">
+        {/* Rating & Address Bar */}
+        <div className="flex flex-wrap items-center gap-6 text-xs sm:text-sm text-slate-600 pt-1">
+          <div className="flex items-center gap-1.5 font-bold text-ocean-950 font-mono">
             <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
             <span>{place.avg_rating > 0 ? place.avg_rating.toFixed(1) : '—'}</span>
             <span className="text-slate-400 font-normal">
@@ -202,7 +210,7 @@ export const PlaceDetailPage: React.FC = () => {
 
           {place.translation.address_text && (
             <div className="flex items-center gap-1.5">
-              <MapPin className="w-4 h-4 text-lagoon-600" />
+              <MapPin className="w-4 h-4 text-lagoon-600 shrink-0" />
               <span>{place.translation.address_text}</span>
             </div>
           )}
@@ -215,37 +223,42 @@ export const PlaceDetailPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Photo Gallery & Showcase */}
+      {/* Photo Showcase Gallery */}
       <div className="space-y-4">
-        <div className="relative aspect-[16/9] md:aspect-[21/9] bg-ocean-900 rounded-2xl overflow-hidden shadow-lg border border-sand-200">
+        <div className="relative aspect-[16/9] md:aspect-[21/9] bg-ocean-950 rounded-3xl overflow-hidden shadow-editorial border border-sand-200/90">
           {selectedImage ? (
             <img
               src={selectedImage}
               alt={place.translation.title}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover animate-in fade-in duration-300"
             />
           ) : (
-            <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-ocean-900 to-lagoon-900 text-white">
-              <Compass className="w-16 h-16 text-lagoon-400 mb-2 opacity-80" />
-              <span className="text-sm font-semibold tracking-wider uppercase text-sand-300">
+            <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-ocean-950 via-ocean-900 to-lagoon-950 text-white p-6 text-center">
+              <Compass className="w-16 h-16 text-sand-300 mb-3 opacity-70" />
+              <span className="font-serif text-xl sm:text-2xl font-bold tracking-wide text-sand-100">
                 {place.translation.title}
+              </span>
+              <span className="text-xs text-sand-300/80 font-mono mt-1">
+                {place.category?.name || 'Dakhla'}
               </span>
             </div>
           )}
         </div>
 
-        {/* Thumbnails row */}
+        {/* Thumbnails Row */}
         {place.images.length > 1 && (
-          <div className="flex items-center gap-3 overflow-x-auto pb-2">
+          <div className="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-none">
             {place.images.map((img) => {
               const url = img.storage_path;
+              const isSelected = selectedImage === url;
               return (
                 <button
                   key={img.id}
                   onClick={() => setSelectedImage(url)}
-                  className={`relative w-24 h-16 rounded-xl overflow-hidden border-2 shrink-0 transition-transform ${
-                    selectedImage === url ? 'border-lagoon-600 scale-105 shadow-md' : 'border-transparent opacity-70 hover:opacity-100'
-                  }`}
+                  className={`relative w-24 sm:w-28 h-16 sm:h-20 rounded-2xl overflow-hidden border-2 shrink-0 transition-all ${isSelected
+                      ? 'border-lagoon-600 scale-105 shadow-md'
+                      : 'border-transparent opacity-70 hover:opacity-100'
+                    }`}
                 >
                   <img src={url} alt={img.caption || ''} className="w-full h-full object-cover" />
                 </button>
@@ -255,58 +268,72 @@ export const PlaceDetailPage: React.FC = () => {
         )}
       </div>
 
-      {/* Layout Split: Content & Action Sidebar */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-        
-        {/* Left 2 Cols: Description, Tips & Map */}
-        <div className="lg:col-span-2 space-y-10">
-          
-          {/* Description Section */}
-          <section className="space-y-4 bg-white p-8 rounded-2xl border border-sand-200/90 shadow-sm">
-            <h2 className="text-xl font-bold text-ocean-900">
+      {/* Layout Split: Editorial Content & Sticky Action Sidebar */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
+
+        {/* Left 8 Cols: Narrative, Tips, Map & Reviews */}
+        <div className="lg:col-span-8 space-y-10">
+
+          {/* About This Destination */}
+          <section className="bg-white p-8 sm:p-10 rounded-3xl border border-sand-200/90 shadow-editorial space-y-5">
+            <h2 className="font-serif text-2xl font-bold text-ocean-950">
               {t('details.aboutPlace')}
             </h2>
-            <div className="prose max-w-none text-slate-700 leading-relaxed space-y-4 text-base">
+            <div className="prose max-w-none text-slate-700 leading-relaxed space-y-4 text-sm sm:text-base font-light">
               {place.translation.description.split('\n\n').map((para, i) => (
                 <p key={i}>{para}</p>
               ))}
             </div>
+
+            {/* Tags / Amenities Chips */}
+            {place.tags && place.tags.length > 0 && (
+              <div className="pt-4 border-t border-sand-100 flex flex-wrap gap-2">
+                {place.tags.map((tag, tIdx) => (
+                  <span
+                    key={tIdx}
+                    className="px-3 py-1 rounded-xl bg-sand-50 border border-sand-200/80 text-xs font-mono text-sand-800"
+                  >
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+            )}
           </section>
 
-          {/* Visitor Tips Section */}
+          {/* Visitor Practical Tips */}
           {place.translation.tips && (
-            <section className="bg-sand-50/80 border border-sand-200 p-8 rounded-2xl space-y-3">
-              <div className="flex items-center gap-2 text-sand-800 font-bold text-base">
-                <Lightbulb className="w-5 h-5 text-amber-600" />
-                <h3>{t('details.tips')}</h3>
+            <section className="bg-sand-50/90 border border-sand-200/90 p-8 sm:p-9 rounded-3xl shadow-xs space-y-3">
+              <div className="flex items-center gap-2.5 text-ocean-950 font-bold text-base">
+                <Lightbulb className="w-5 h-5 text-sand-600 shrink-0" />
+                <h3 className="font-serif text-lg">{t('details.tips')}</h3>
               </div>
-              <p className="text-sm text-slate-700 leading-relaxed">
+              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-light">
                 {place.translation.tips}
               </p>
             </section>
           )}
 
-          {/* Mega Project Details Card */}
+          {/* Mega Project Specifications */}
           {place.project_status !== 'operational' && (
-            <section className="bg-ocean-50/60 border border-ocean-200/80 p-6 rounded-2xl space-y-3">
-              <div className="flex items-center gap-2 text-ocean-900 font-bold text-base">
-                <Calendar className="w-5 h-5 text-ocean-700" />
-                <h3>{t('details.projectInfo')}</h3>
+            <section className="bg-ocean-950 text-sand-100 p-8 rounded-3xl shadow-editorial space-y-3 border border-white/10">
+              <div className="flex items-center gap-2.5 text-sand-100 font-bold text-base">
+                <Calendar className="w-5 h-5 text-lagoon-400 shrink-0" />
+                <h3 className="font-serif text-lg">{t('details.projectInfo')}</h3>
               </div>
-              <div className="text-sm text-slate-700 space-y-2">
+              <div className="text-xs sm:text-sm text-sand-200/90 space-y-2 font-light">
                 <p>
-                  <strong className="text-ocean-900">{t('details.completionDate')}: </strong>
+                  <strong className="text-white font-medium">{t('details.completionDate')}: </strong>
                   {place.project_completion_date || t('status.underConstruction')}
                 </p>
               </div>
             </section>
           )}
 
-          {/* Embedded Leaflet Map */}
+          {/* Embedded Leaflet Map with Coordinates */}
           {hasCoordinates && (
-            <section className="space-y-4 bg-white p-6 rounded-2xl border border-sand-200/90 shadow-sm">
+            <section className="bg-white p-7 sm:p-8 rounded-3xl border border-sand-200/90 shadow-editorial space-y-4">
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 font-bold text-ocean-900 text-lg">
+                <div className="flex items-center gap-2 font-serif font-bold text-ocean-950 text-xl">
                   <MapPin className="w-5 h-5 text-lagoon-600" />
                   <h2>{t('details.location')}</h2>
                 </div>
@@ -314,7 +341,7 @@ export const PlaceDetailPage: React.FC = () => {
                   href={`https://www.openstreetmap.org/?mlat=${place.latitude}&mlon=${place.longitude}#map=14/${place.latitude}/${place.longitude}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-xs font-bold text-lagoon-600 hover:text-lagoon-700"
+                  className="inline-flex items-center gap-1 text-xs font-semibold text-lagoon-700 hover:text-lagoon-800"
                 >
                   <span>{t('map.openInOsm')}</span>
                   <ExternalLink className="w-3.5 h-3.5" />
@@ -324,20 +351,20 @@ export const PlaceDetailPage: React.FC = () => {
                 places={[place]}
                 selectedPlace={place}
                 zoom={14}
-                className="h-[350px] w-full rounded-xl overflow-hidden border border-sand-200"
+                className="h-[360px] w-full rounded-2xl overflow-hidden border border-sand-200"
               />
             </section>
           )}
 
-          {/* Reviews & Visitor Feedback Section */}
-          <section className="space-y-6 pt-6 border-t border-sand-200">
+          {/* Reviews & Community Feedback Section */}
+          <section className="space-y-6 pt-4 border-t border-sand-200/80">
             <div className="flex items-center justify-between">
               <div className="space-y-1">
-                <h2 className="text-2xl font-extrabold text-ocean-900 tracking-tight">
+                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-ocean-950 tracking-tight">
                   {t('reviews.title')}
                 </h2>
-                <div className="flex items-center gap-2 text-sm text-slate-600">
-                  <div className="flex items-center gap-1 font-bold text-amber-600">
+                <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-600 font-mono">
+                  <div className="flex items-center gap-1 font-bold text-ocean-950">
                     <Star className="w-4 h-4 fill-amber-500 text-amber-500" />
                     <span>{place.avg_rating > 0 ? place.avg_rating.toFixed(1) : '—'}</span>
                   </div>
@@ -353,82 +380,82 @@ export const PlaceDetailPage: React.FC = () => {
 
         </div>
 
-        {/* Right Col: Contact & Action Sidebar */}
-        <aside className="space-y-6">
-          <div className="bg-white p-6 rounded-2xl border border-sand-200/90 shadow-sm space-y-6 sticky top-28">
-            <h3 className="font-bold text-lg text-ocean-900 pb-2 border-b border-sand-100">
-              {t('common.contact')}
+        {/* Right 4 Cols: Sticky Action & Contact Panel */}
+        <aside className="lg:col-span-4 space-y-6">
+          <div className="bg-white p-7 sm:p-8 rounded-3xl border border-sand-200/90 shadow-editorial space-y-6 sticky top-28">
+            <h3 className="font-serif font-bold text-xl text-ocean-950 pb-3 border-b border-sand-100">
+              {t('common.contact')} & Accès
             </h3>
 
-            {/* Action Buttons */}
+            {/* Direct Action Buttons */}
             <div className="space-y-3">
-              
-              {/* WhatsApp */}
+
+              {/* WhatsApp Action */}
               {place.whatsapp && (
                 <a
                   href={`https://wa.me/${place.whatsapp.replace(/[^0-9]/g, '')}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-md transition-colors"
+                  className="w-full inline-flex items-center justify-center gap-2.5 px-4 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider shadow-sm transition-colors"
                 >
                   <MessageSquare className="w-4 h-4" />
                   <span>{t('details.whatsappChat')}</span>
                 </a>
               )}
 
-              {/* Phone */}
+              {/* Direct Phone Call */}
               {place.phone && (
                 <a
                   href={`tel:${place.phone.replace(/[^0-9+]/g, '')}`}
-                  className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-lagoon-600 hover:bg-lagoon-500 text-white font-bold text-sm shadow-md transition-colors"
+                  className="w-full inline-flex items-center justify-center gap-2.5 px-4 py-3.5 rounded-xl bg-lagoon-600 hover:bg-lagoon-500 text-white font-bold text-xs uppercase tracking-wider shadow-sm transition-colors"
                 >
                   <Phone className="w-4 h-4" />
                   <span>{t('details.callPhone')}</span>
                 </a>
               )}
 
-              {/* Website */}
+              {/* Official Website */}
               {place.website_url && (
                 <a
                   href={place.website_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-sand-200 bg-sand-50 hover:bg-sand-100 text-ocean-900 font-semibold text-sm transition-colors"
+                  className="w-full inline-flex items-center justify-center gap-2.5 px-4 py-3.5 rounded-xl border border-sand-200 bg-sand-50/70 hover:bg-sand-100 text-ocean-950 font-semibold text-xs tracking-wide transition-colors"
                 >
                   <Globe className="w-4 h-4 text-ocean-700" />
                   <span>{t('details.visitWebsite')}</span>
                 </a>
               )}
 
-              {/* Instagram */}
+              {/* Instagram Profile */}
               {place.instagram_handle && (
                 <a
                   href={`https://instagram.com/${place.instagram_handle.replace(/^@/, '')}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-sand-200 bg-sand-50 hover:bg-sand-100 text-pink-700 font-semibold text-sm transition-colors"
+                  className="w-full inline-flex items-center justify-center gap-2.5 px-4 py-3.5 rounded-xl border border-sand-200 bg-sand-50/70 hover:bg-sand-100 text-pink-700 font-semibold text-xs tracking-wide transition-colors"
                 >
                   <Instagram className="w-4 h-4" />
                   <span>{place.instagram_handle}</span>
                 </a>
               )}
 
-              {/* Directions */}
+              {/* Directions Navigation */}
               {hasCoordinates && (
                 <a
                   href={`https://www.google.com/maps/dir/?api=1&destination=${place.latitude},${place.longitude}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-ocean-800 bg-ocean-900 hover:bg-ocean-800 text-white font-bold text-sm shadow-md transition-colors"
+                  className="w-full inline-flex items-center justify-center gap-2.5 px-4 py-3.5 rounded-xl bg-ocean-950 hover:bg-ocean-900 text-sand-100 font-bold text-xs uppercase tracking-wider shadow-sm transition-colors"
                 >
-                  <Compass className="w-4 h-4 text-sand-300" />
+                  <Navigation className="w-4 h-4 text-lagoon-400" />
                   <span>{t('details.getDirections')}</span>
                 </a>
               )}
             </div>
 
-            {/* Trust and Safety Badge */}
-            <div className="pt-4 border-t border-sand-100 flex items-center gap-2 text-xs text-slate-500">
+            {/* Field Audit Trust Seal */}
+            <div className="pt-5 border-t border-sand-100 flex items-center gap-2 text-xs text-slate-500">
               <ShieldCheck className="w-4 h-4 text-lagoon-600 shrink-0" />
               <span>{t('details.verifiedAuditBadge')}</span>
             </div>

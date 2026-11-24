@@ -11,7 +11,6 @@ import {
   Tags, 
   MessageSquare, 
   ArrowLeft, 
-  ShieldCheck, 
   LogOut, 
   ExternalLink,
   Globe
@@ -63,14 +62,16 @@ export const AdminLayout: React.FC = () => {
           {/* Admin Header / Logo */}
           <div className="p-5 border-b border-sand-200 dark:border-stone-700 flex items-center justify-between">
             <Link to="/admin" className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-ocean-700 to-lagoon-500 flex items-center justify-center text-white shadow-sm">
-                <ShieldCheck className="w-5 h-5" />
-              </div>
+              <img 
+                src="/images/elhaj-avatar.jpg" 
+                alt="Dakhlin Admin" 
+                className="w-9 h-9 rounded-full object-cover border border-[#004F32] shadow-xs" 
+              />
               <div>
-                <span className="font-serif font-black text-lg tracking-tight text-ocean-950 dark:text-sand-100">
-                  Dakhlin<span className="text-lagoon-500">.</span>
+                <span className="font-extrabold text-lg tracking-tight text-slate-900 dark:text-sand-100">
+                  Dakhlin<span className="text-[#00AA6C]">.</span>
                 </span>
-                <span className="block text-[10px] uppercase font-bold tracking-widest text-ocean-600 dark:text-ocean-400">
+                <span className="block text-[10px] uppercase font-bold tracking-widest text-[#004F32] dark:text-ocean-400">
                   {t('admin.cms_badge', 'Admin CMS')}
                 </span>
               </div>

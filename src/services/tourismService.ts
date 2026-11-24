@@ -9,6 +9,7 @@ import {
   ResolvedTranslation,
   SupportedLanguage,
 } from '@/types/database';
+import { getCuratedPlaces, getCuratedPlaceBySlug } from './curatedPlaces';
 
 function parseCategory(rawCat: any, lang: SupportedLanguage): CategoryWithTranslation | undefined {
   if (!rawCat) return undefined;
@@ -116,9 +117,16 @@ export async function fetchCategories(
     .eq('is_active', true)
     .order('display_order', { ascending: true });
 
-  if (catError) {
-    console.error('Error fetching categories:', catError);
-    return [];
+  if (catError || !categories || categories.length === 0) {
+    return [
+      { id: '11111111-0001-0000-0000-000000000001', slug: 'hotels', icon: 'hotel', display_order: 1, is_active: true, created_at: '2026-11-23T00:00:00Z', name: lang === 'ar' ? 'فنادق ومنتجعات' : lang === 'en' ? 'Hotels & Resorts' : 'Hôtels & Hébergements', description: null, language_code: lang },
+      { id: '11111111-0002-0000-0000-000000000002', slug: 'restaurants', icon: 'utensils', display_order: 2, is_active: true, created_at: '2026-11-23T00:00:00Z', name: lang === 'ar' ? 'مطاعم ومأكولات' : lang === 'en' ? 'Restaurants & Dining' : 'Restaurants & Gastronomie', description: null, language_code: lang },
+      { id: '11111111-0003-0000-0000-000000000003', slug: 'street-food', icon: 'sandwich', display_order: 3, is_active: true, created_at: '2026-11-23T00:00:00Z', name: lang === 'ar' ? 'أكلات شعبية' : lang === 'en' ? 'Street Food' : 'Street Food & Snacks', description: null, language_code: lang },
+      { id: '11111111-0004-0000-0000-000000000004', slug: 'activities', icon: 'waves', display_order: 4, is_active: true, created_at: '2026-11-23T00:00:00Z', name: lang === 'ar' ? 'أنشطة ورياضات' : lang === 'en' ? 'Activities & Watersports' : 'Activités & Kitesurf', description: null, language_code: lang },
+      { id: '11111111-0005-0000-0000-000000000005', slug: 'attractions', icon: 'compass', display_order: 5, is_active: true, created_at: '2026-11-23T00:00:00Z', name: lang === 'ar' ? 'معالم سياحية' : lang === 'en' ? 'Attractions & Nature' : 'Sites & Attractions', description: null, language_code: lang },
+      { id: '11111111-0006-0000-0000-000000000006', slug: 'souvenirs', icon: 'shopping-bag', display_order: 6, is_active: true, created_at: '2026-11-23T00:00:00Z', name: lang === 'ar' ? 'صناعة تقليدية' : lang === 'en' ? 'Handicrafts & Souvenirs' : 'Artisanat & Souvenirs', description: null, language_code: lang },
+      { id: '11111111-0007-0000-0000-000000000007', slug: 'projects', icon: 'hard-hat', display_order: 7, is_active: true, created_at: '2026-11-23T00:00:00Z', name: lang === 'ar' ? 'مشاريع كبرى' : lang === 'en' ? 'Major Projects' : 'Grands Projets', description: null, language_code: lang },
+    ];
   }
 
   const { data: translations, error: transError } = await supabase
@@ -213,12 +221,9 @@ export async function fetchPublishedPlaces(
 
   const { data, error } = await query;
 
-  if (error) {
-    console.error('Error fetching places:', error);
-    return [];
+  if (error || !data || data.length === 0) {
+    return getCuratedPlaces(options.lang, options.categorySlug, options.searchQuery);
   }
-
-  if (!data) return [];
 
   // Transform and resolve translations
   let results: PlaceWithDetails[] = data.map((item: any) => {
@@ -313,8 +318,7 @@ export async function fetchPlaceBySlug(
     .single();
 
   if (error || !data) {
-    console.error('Error fetching place by slug:', error);
-    return null;
+    return getCuratedPlaceBySlug(slug, lang);
   }
 
   const rawTranslations = (data.translations || []) as PlaceTranslation[];

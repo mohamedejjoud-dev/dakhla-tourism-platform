@@ -38,17 +38,17 @@ export const CookieBanner: React.FC = () => {
     <div
       role="region"
       aria-label="Cookie consent banner"
-      className="fixed bottom-4 left-4 right-4 sm:left-6 sm:right-auto sm:max-w-md z-40 bg-white dark:bg-stone-850 rounded-2xl shadow-2xl border border-sand-300 dark:border-stone-700 p-5 animate-in slide-in-from-bottom-5 duration-300"
+      className="fixed bottom-5 left-4 right-4 sm:left-6 sm:right-auto sm:max-w-md z-40 bg-white/95 backdrop-blur-glass rounded-2xl shadow-editorial border border-sand-300/80 p-5 animate-in slide-in-from-bottom-5 duration-300"
     >
       <div className="flex items-start gap-3.5">
-        <div className="p-2.5 rounded-xl bg-ocean-50 dark:bg-ocean-950/50 text-ocean-600 dark:text-ocean-400 shrink-0">
-          <ShieldCheck className="w-5 h-5" />
+        <div className="p-2.5 rounded-xl bg-sand-100 text-ocean-900 shrink-0">
+          <ShieldCheck className="w-5 h-5 text-lagoon-600" />
         </div>
         <div className="space-y-2 flex-1 min-w-0">
-          <h4 className="text-sm font-bold text-sand-950 dark:text-sand-100">
+          <h4 className="text-xs font-bold uppercase tracking-wider text-ocean-950">
             {t('privacy.cookie_title', 'Respect de votre vie privée (Loi 09-08 / CNDP)')}
           </h4>
-          <p className="text-xs text-sand-600 dark:text-sand-400 leading-relaxed">
+          <p className="text-xs text-slate-600 leading-relaxed">
             {t(
               'privacy.cookie_desc',
               'Nous utilisons des cookies essentiels pour sécuriser votre session et mémoriser vos préférences de langue. Vos données sont protégées conformément à la législation marocaine.'
@@ -57,19 +57,19 @@ export const CookieBanner: React.FC = () => {
           <div className="pt-2 flex flex-wrap items-center gap-2">
             <button
               onClick={handleAccept}
-              className="px-4 py-2 bg-ocean-600 hover:bg-ocean-700 text-white rounded-xl text-xs font-semibold transition shadow-xs"
+              className="px-4 py-2 bg-ocean-950 hover:bg-ocean-900 text-sand-100 rounded-xl text-xs font-semibold tracking-wide transition shadow-xs"
             >
               {t('common.accept', 'Accepter')}
             </button>
             <button
               onClick={handleDecline}
-              className="px-3 py-2 bg-sand-100 hover:bg-sand-200 dark:bg-stone-700 dark:hover:bg-stone-600 text-sand-800 dark:text-sand-200 rounded-xl text-xs font-medium transition"
+              className="px-3.5 py-2 bg-sand-100 hover:bg-sand-200/80 text-ocean-950 rounded-xl text-xs font-medium transition"
             >
               {t('common.decline', 'Refuser')}
             </button>
             <Link
               to="/about#privacy"
-              className="text-xs font-semibold text-ocean-600 dark:text-ocean-400 hover:underline px-2 py-1"
+              className="text-xs font-semibold text-lagoon-700 hover:text-lagoon-800 hover:underline px-2 py-1"
             >
               {t('footer.privacy', 'En savoir plus')}
             </Link>
@@ -78,7 +78,7 @@ export const CookieBanner: React.FC = () => {
         <button
           onClick={handleDecline}
           aria-label="Close"
-          className="text-sand-400 hover:text-sand-600 dark:hover:text-sand-200 shrink-0 p-1"
+          className="text-slate-400 hover:text-slate-600 shrink-0 p-1"
         >
           <X className="w-4 h-4" />
         </button>
