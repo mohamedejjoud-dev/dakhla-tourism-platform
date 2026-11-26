@@ -14,7 +14,6 @@ import {
   Lightbulb,
   ExternalLink,
   ShieldCheck,
-  Calendar,
   AlertTriangle,
   Heart,
   Navigation
@@ -271,22 +270,6 @@ export const PlaceDetailPage: React.FC = () => {
               <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-light">
                 {place.translation.tips}
               </p>
-            </section>
-          )}
-
-          {/* Mega Project Specifications */}
-          {place.project_status !== 'operational' && (
-            <section className="bg-ocean-950 text-sand-100 p-8 rounded-3xl shadow-editorial space-y-3 border border-white/10">
-              <div className="flex items-center gap-2.5 text-sand-100 font-bold text-base">
-                <Calendar className="w-5 h-5 text-lagoon-400 shrink-0" />
-                <h3 className="font-serif text-lg">{t('details.projectInfo')}</h3>
-              </div>
-              <div className="text-xs sm:text-sm text-sand-200/90 space-y-2 font-light">
-                <p>
-                  <strong className="text-white font-medium">{t('details.completionDate')}: </strong>
-                  {place.project_completion_date || t('status.underConstruction')}
-                </p>
-              </div>
             </section>
           )}
 
