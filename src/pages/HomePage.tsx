@@ -194,7 +194,7 @@ export const HomePage: React.FC = () => {
       updated_at: new Date().toISOString(),
       avg_rating: 4.7,
       review_count: 288,
-      primaryImageUrl: 'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fm=webp&fit=crop&w=800&q=80',
+      primaryImageUrl: '/images/places/casa-pedro/fish-1.webp',
       category: { id: 'c-2', slug: 'restaurants', name: t('categories.restaurants') },
       translation: {
         title: 'Casa Pedro & Poissons du Port',
@@ -202,7 +202,9 @@ export const HomePage: React.FC = () => {
         isFallback: false,
       },
       images: [
-        { id: 'img-r2', place_id: 'r-2', storage_path: 'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fm=webp&fit=crop&w=800&q=80', display_order: 1, is_primary: true },
+        { id: 'img-r2-1', place_id: 'r-2', storage_path: '/images/places/casa-pedro/fish-1.webp', display_order: 1, is_primary: true },
+        { id: 'img-r2-2', place_id: 'r-2', storage_path: '/images/places/casa-pedro/fish-2.webp', display_order: 2, is_primary: false },
+        { id: 'img-r2-3', place_id: 'r-2', storage_path: '/images/places/casa-pedro/fish-3.webp', display_order: 3, is_primary: false },
       ],
     },
     {

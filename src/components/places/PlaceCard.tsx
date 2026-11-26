@@ -83,10 +83,12 @@ const PLACE_IMAGES: Record<string, string[]> = {
   ],
   'talhamar-parc-huitrier': [
     'https://images.unsplash.com/photo-1534482421-64566f976cfa?auto=format&fm=webp&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fm=webp&fit=crop&w=800&q=80',
+    '/images/places/casa-pedro/fish-2.webp',
   ],
   'casa-pedro-seafood': [
-    'https://images.unsplash.com/photo-1534482421-64566f976cfa?auto=format&fm=webp&fit=crop&w=800&q=80',
+    '/images/places/casa-pedro/fish-1.webp',
+    '/images/places/casa-pedro/fish-2.webp',
+    '/images/places/casa-pedro/fish-3.webp',
   ],
   'la-dune-blanche-safari': [
     'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fm=webp&fit=crop&w=800&q=80',
@@ -104,7 +106,7 @@ const CATEGORY_DEFAULT_IMAGES: Record<string, string> = {
   hotels: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fm=webp&fit=crop&w=800&q=80',
   activities: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fm=webp&fit=crop&w=800&q=80',
   restaurants: 'https://images.unsplash.com/photo-1534482421-64566f976cfa?auto=format&fm=webp&fit=crop&w=800&q=80',
-  'street-food': 'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fm=webp&fit=crop&w=800&q=80',
+  'street-food': '/images/places/mama-saida/mama-saida-1.webp',
   attractions: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fm=webp&fit=crop&w=800&q=80',
   souvenirs: 'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fm=webp&fit=crop&w=800&q=80',
   projects: 'https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fm=webp&fit=crop&w=800&q=80',

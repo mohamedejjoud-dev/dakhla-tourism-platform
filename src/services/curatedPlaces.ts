@@ -189,9 +189,11 @@ export const CURATED_PLACES_RAW: any[] = [
       },
     ],
     images: [
-      { id: 'img-r2', place_id: 'r-2', storage_path: 'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fm=webp&fit=crop&w=800&q=80', caption: "Poissons grillés du jour", display_order: 1, is_primary: true },
+      { id: 'img-r2-1', place_id: 'r-2', storage_path: '/images/places/casa-pedro/fish-1.webp', caption: "Poissons grillés du jour", display_order: 1, is_primary: true },
+      { id: 'img-r2-2', place_id: 'r-2', storage_path: '/images/places/casa-pedro/fish-2.webp', caption: "Plateau de fruits de mer", display_order: 2, is_primary: false },
+      { id: 'img-r2-3', place_id: 'r-2', storage_path: '/images/places/casa-pedro/fish-3.webp', caption: "Calamars et friture royale", display_order: 3, is_primary: false },
     ],
-    primaryImageUrl: 'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fm=webp&fit=crop&w=800&q=80',
+    primaryImageUrl: '/images/places/casa-pedro/fish-1.webp',
   },
 
   // Dakhla Club Hotel & Spa
