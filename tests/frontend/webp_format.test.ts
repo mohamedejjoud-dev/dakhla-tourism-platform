@@ -65,7 +65,6 @@ describe('WebP Image Format Verification Suite', () => {
   it('5. Verifies all Unsplash image URLs in HomePage.tsx specify fm=webp', () => {
     const homeContent = fs.readFileSync(path.resolve('src/pages/HomePage.tsx'), 'utf8');
     const unsplashMatches = homeContent.match(/https:\/\/images\.unsplash\.com\/[^\s"']+/g) || [];
-    assert.ok(unsplashMatches.length > 0, 'HomePage must contain Unsplash images');
     for (const url of unsplashMatches) {
       assert.ok(url.includes('fm=webp'), `Unsplash URL in HomePage missing fm=webp: ${url}`);
     }

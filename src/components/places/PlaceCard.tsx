@@ -90,6 +90,31 @@ const PLACE_IMAGES: Record<string, string[]> = {
     '/images/places/casa-pedro/fish-2.webp',
     '/images/places/casa-pedro/fish-3.webp',
   ],
+  'street-bar-dakhla': [
+    '/images/places/street-bar/cover.webp',
+    '/images/places/street-bar/photo-01.webp',
+    '/images/places/street-bar/photo-02.webp',
+  ],
+  'snack-super-chicken': [
+    '/images/places/snack-super-chicken/cover.webp',
+    '/images/places/snack-super-chicken/photo-01.webp',
+    '/images/places/snack-super-chicken/photo-02.webp',
+  ],
+  'flavour-dakhla': [
+    '/images/places/flavour/cover.webp',
+    '/images/places/flavour/photo-01.webp',
+    '/images/places/flavour/photo-02.webp',
+  ],
+  'mahlaba-essaouiri-dakhla': [
+    '/images/places/mahlaba-essaouiri/cover.webp',
+    '/images/places/mahlaba-essaouiri/photo-01.webp',
+    '/images/places/mahlaba-essaouiri/photo-02.webp',
+  ],
+  'albahriya-joury-dakhla': [
+    '/images/places/albahriya-joury/cover.webp',
+    '/images/places/albahriya-joury/photo-01.webp',
+    '/images/places/albahriya-joury/photo-02.webp',
+  ],
   'la-dune-blanche-safari': [
     'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fm=webp&fit=crop&w=800&q=80',
     'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fm=webp&fit=crop&w=800&q=80',
